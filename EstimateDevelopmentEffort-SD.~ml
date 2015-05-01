@@ -100,7 +100,7 @@
 <XPD:OBJ name="OwnedCollaborationInstanceSets[0]" type="UMLCollaborationInstanceSet" guid="Z3LixCGcjkahtJT8ZtfGdQAA">
 <XPD:ATTR name="Name" type="string">CollaborationInstanceSet1</XPD:ATTR>
 <XPD:REF name="RepresentedClassifier">ganRgsCM0EqfvMy9Wz93YwAA</XPD:REF>
-<XPD:ATTR name="#InteractionInstanceSets" type="integer">2</XPD:ATTR>
+<XPD:ATTR name="#InteractionInstanceSets" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="InteractionInstanceSets[0]" type="UMLInteractionInstanceSet" guid="nI8iXlf+Q0uB2JpZvAtPegAA">
 <XPD:ATTR name="Name" type="string">InteractionInstanceSet1</XPD:ATTR>
 <XPD:REF name="Context">Z3LixCGcjkahtJT8ZtfGdQAA</XPD:REF>
@@ -781,18 +781,6 @@
 <XPD:REF name="Views[1]">1VQSRGPGckuXuJanImTkNwAA</XPD:REF>
 <XPD:REF name="Views[2]">Q1B0e7fg2USKZL7YYCWiKAAA</XPD:REF>
 <XPD:REF name="Views[3]">pnrN5weLk0Km6ah+hvK2UgAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="InteractionInstanceSets[1]" type="UMLInteractionInstanceSet" guid="PdMBkOK8k0iyHr536Ul7FgAA">
-<XPD:ATTR name="Name" type="string">InteractionInstanceSet2</XPD:ATTR>
-<XPD:REF name="Context">Z3LixCGcjkahtJT8ZtfGdQAA</XPD:REF>
-<XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="OwnedDiagrams[0]" type="UMLSequenceDiagram" guid="NGM4OCm7PEKIiN4EhAigyAAA">
-<XPD:ATTR name="Name" type="string">D</XPD:ATTR>
-<XPD:REF name="DiagramOwner">PdMBkOK8k0iyHr536Ul7FgAA</XPD:REF>
-<XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="CA5RkYzO+keL8xK+xR97HQAA">
-<XPD:REF name="Diagram">NGM4OCm7PEKIiN4EhAigyAAA</XPD:REF>
-</XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
 <XPD:ATTR name="#ParticipatingInstances" type="integer">7</XPD:ATTR>
