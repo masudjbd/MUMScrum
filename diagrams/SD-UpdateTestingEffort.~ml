@@ -55,7 +55,7 @@
 <XPD:REF name="Diagram">OmNiDWG0mEGlFjqM+4YwSAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#OwnedElements" type="integer">7</XPD:ATTR>
+<XPD:ATTR name="#OwnedElements" type="integer">8</XPD:ATTR>
 <XPD:OBJ name="OwnedElements[0]" type="UMLActor" guid="pmTQeOz3vEq/Ve0AHwFT9AAA">
 <XPD:ATTR name="Name" type="string">Tester</XPD:ATTR>
 <XPD:REF name="Namespace">nngbhoF+b0+EomEvuQqBxwAA</XPD:REF>
@@ -65,8 +65,6 @@
 <XPD:OBJ name="OwnedElements[1]" type="UMLClass" guid="5c5bnOR9rUOYi83/+676LwAA">
 <XPD:ATTR name="Name" type="string">updateDevelopmentEffort</XPD:ATTR>
 <XPD:REF name="Namespace">nngbhoF+b0+EomEvuQqBxwAA</XPD:REF>
-<XPD:ATTR name="#Instances" type="integer">1</XPD:ATTR>
-<XPD:REF name="Instances[0]">/RrqzAj+t0qisV1ZC8W7ugAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[2]" type="UMLClass" guid="MrDMH9TRIkCPJq/cvff9WQAA">
 <XPD:ATTR name="Name" type="string">TesterController</XPD:ATTR>
@@ -95,6 +93,12 @@
 <XPD:REF name="Namespace">nngbhoF+b0+EomEvuQqBxwAA</XPD:REF>
 <XPD:ATTR name="#Instances" type="integer">1</XPD:ATTR>
 <XPD:REF name="Instances[0]">bO9Vy8qB0UCBVr/qqL+ANAAA</XPD:REF>
+</XPD:OBJ>
+<XPD:OBJ name="OwnedElements[7]" type="UMLClass" guid="LQ6LAdfYkU2wFErvQpnvlwAA">
+<XPD:ATTR name="Name" type="string">updateTestingEffort</XPD:ATTR>
+<XPD:REF name="Namespace">nngbhoF+b0+EomEvuQqBxwAA</XPD:REF>
+<XPD:ATTR name="#Instances" type="integer">1</XPD:ATTR>
+<XPD:REF name="Instances[0]">/RrqzAj+t0qisV1ZC8W7ugAA</XPD:REF>
 </XPD:OBJ>
 <XPD:ATTR name="#OwnedCollaborationInstanceSets" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedCollaborationInstanceSets[0]" type="UMLCollaborationInstanceSet" guid="bCVgOlKECkeG4LH9mG0lpgAA">
@@ -145,7 +149,7 @@
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="8oSBegqQCUWrAKiQOa45zgAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="/0Qxc6nNSEOcXSSnGC3F3QAA">
 <XPD:ATTR name="FontStyle" type="integer">4</XPD:ATTR>
-<XPD:ATTR name="Text" type="string"> : updateDevelopmentEffort</XPD:ATTR>
+<XPD:ATTR name="Text" type="string"> : updateTestingEffort</XPD:ATTR>
 </XPD:OBJ>
 <XPD:OBJ name="StereotypeLabel" type="LabelView" guid="VOprrCCw/UWFLWCCo6Ha6wAA">
 <XPD:ATTR name="Text" type="string">&lt;&lt;Boundary&gt;&gt;</XPD:ATTR>
@@ -796,7 +800,7 @@
 </XPD:OBJ>
 <XPD:OBJ name="ParticipatingInstances[1]" type="UMLObject" guid="/RrqzAj+t0qisV1ZC8W7ugAA">
 <XPD:ATTR name="StereotypeName" type="string">Boundary</XPD:ATTR>
-<XPD:REF name="Classifier">5c5bnOR9rUOYi83/+676LwAA</XPD:REF>
+<XPD:REF name="Classifier">LQ6LAdfYkU2wFErvQpnvlwAA</XPD:REF>
 <XPD:REF name="CollaborationInstanceSet">bCVgOlKECkeG4LH9mG0lpgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">2</XPD:ATTR>
 <XPD:REF name="Views[0]">PeVDMwp7O0iPGTk+ghAhIgAA</XPD:REF>
