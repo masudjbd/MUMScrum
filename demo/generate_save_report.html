@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Generate And Save Product Report</title>
+<style type="text/css">
+html,body{ margin:0; padding:10px; font-family:Arial, Helvetica, sans-serif; font-size:12px;}
+p{ padding:3px; border:1px solid #CCC;}
+.sp{ margin-left:20px;}
+.us{ margin-left:35px; background:#EEE; padding:5px; margin-bottom:2px;}
+.done{ background:#0C3;}
+.undone{ background:#FFC;}
+.right {
+	text-align: right;
+}
+table#reportId{ display:none; }
+</style>
+<script type="text/javascript">
+ 
+ function showReport(){
+	 //report table show
+	 document.getElementById("reportId").style.display="block";
+	 var pb = document.getElementById("jumpMenu").value;
+	 if(pb=="0"){
+		 alert("select a valid product backlog");
+		 document.getElementById("reportId").style.display="none";
+		 }else{
+			  document.getElementById("reportId").style.display="block";
+			 document.getElementById("ProductBacklog").innerHTML=pb;
+			 
+			 var rb = "<p><strong>Release Backlog A</strong> : 001 "+ 
+			 "<div class=\"sp\"><strong>Sprint A </strong>: Total Time: 5 Days "+
+			 "<br /> <div class=\"us\"><strong>User Story A</strong>:(3 days) <span class=\"dev\"><strong>Developer:</strong> Sharif </span>  <strong>Update:</strong><span class=\"done\">Done: 80%</span> <span class=\"undone\">Undone: 20%</span> | <span class=\"dev\"><strong>Tester:</strong> Sifat </span>  <strong>Update:</strong><span class=\"done\">Done: 20%</span> <span class=\"undone\">Undone: 80%</span> </div><div class=\"us\">User Story B:(2 days) <span class=\"dev\"><strong>Developer:</strong>Habib </span> "+
+			 " <strong>Update:</strong><span class=\"done\">Done: 30%</span> <span class=\"undone\">Undone: 70%</span> </div>"+
+			 "</div></div>"+ 
+			 "<div class=\"sp\"><strong>Sprint B</strong> : Total Time: 2 Days</div>"+ 
+			 "<div class=\"sp\"><strong>Sprint C</strong> : Total Time: 15 Days</div>"+ 
+			 "</p><p><strong>Release Backlog B</strong> : 002</p>";
+			 document.getElementById("ReleaseBacklog").innerHTML=rb;
+			 
+		 }
+	  
+	 }
+ 
+ function successClose(){
+	 	
+		alert("successfully saved product report");
+			 document.getElementById("reportId").style.display="none";
+
+	 }
+ 
+ 
+</script>
+</head>
+
+<body>
+<p  class="right">Welcome to : <strong>Masudur Rahman</strong><br />
+Role: Product Owner </p>
+
+<h3>Generate Product Report: </h3>
+<form action="#">
+	<table width="500" border="0" cellspacing="2" cellpadding="3">
+  <tr>
+    <td width="167">&nbsp;</td>
+    <td width="315">&nbsp;</td>
+  </tr>
+  <tr>
+    <td><strong>Select Product Backlog</strong></td>
+    <td><select name="jumpMenu" id="jumpMenu">
+    	<option value="0">Select PB</option>
+      <option value="MUM Scrum">MUM Scrum</option>
+      <option value="MUM Inventory">MUM Inventory</option>
+      <option value="Student Activity">Student Activity</option>
+    </select></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="button" name="button" id="button" onclick="showReport()" value="Generate Report" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  </table>
+
+</form>
+
+<table width="1000" id="reportId"   border="0" cellspacing="2" cellpadding="3">
+  <tr>
+    <td  ><strong>ProductBacklog</strong></td>
+    <td   id="ProductBacklog">&nbsp;</td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>ReleaseBacklog</strong></td>
+    <td id="ReleaseBacklog">&nbsp;</td>
+  </tr>
+  
+  <tr>
+    <td>&nbsp;</td>
+    <td><input type="button" name="button2" id="button2" onclick="successClose()" value="Save Report" /></td>
+  </tr>
+</table>
+</body>
+</html>
