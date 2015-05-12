@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.validator.constraints.*;
 
 /**
  *
@@ -22,8 +23,10 @@ public class Employee {
     @Id
     @GeneratedValue
     private int id;
+    @NotEmpty
     private String Name;
     private String Mobile;
+    @Email
     private String Email;
     private String Address;
     @Temporal(TemporalType.DATE)

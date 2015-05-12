@@ -3,16 +3,18 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+
+<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>MUMScrum Project</title>
-        <link href="resource/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="resource/css/mumscrum.css" rel="stylesheet" type="text/css"/>
-        <script src="resource/js/jquery-1.9.1.min.js"></script>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Edit Employee</title>
+        <link href="${pageContext.request.contextPath}/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="${pageContext.request.contextPath}/resource/css/mumscrum.css" rel="stylesheet" type="text/css"/>
+        <script src="${pageContext.request.contextPath}/resource/js/jquery-1.9.1.min.js"></script>
     </head>
     <body>
+
 
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
@@ -55,9 +57,9 @@
                 </div>
             </div>
         </div>
-                                            
+
         <div style="margin-top: 50px;" class="clearfix"></div>
-        
+
         <div class="container-fluid">
             <div class="row-fluid">
 
@@ -74,15 +76,52 @@
                 </div>
                 <div class="span9">
 
-                    <h1>
-                        <spring:message code="mumscrum.welcome.message" />
-                    </h1>
+                    <h1>Edit Employee</h1>
+
+                    <form:form class="form-horizontal" commandName="employee" method="post">
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputName">Name</label>
+                            <div class="controls">
+                                <form:input type="text" path="name" id="inputName" placeholder="Name" />
+                                <form:errors path="name" />
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail">Email</label>
+                            <div class="controls">
+                                <form:input type="text" path="email" id="inputEmail" placeholder="Email" />
+                            </div>
+                        </div>
+
+
+                        <div class="control-group">
+                            <label class="control-label" for="inputMobile">Mobile</label>
+                            <div class="controls">
+                                <form:input type="text" path="mobile" id="inputMobile" placeholder="Mobile" />
+                            </div>
+                        </div>
 
 
 
+                        <div class="control-group">
+                            <label class="control-label" for="inputAddress">Address</label>
+                            <div class="controls">
+                                <form:input type="text" path="address" id="inputAddress"
+                                       placeholder="Address" />
+                            </div>
+                        </div>
 
 
-                    <p>  The time on the server is ${serverTime}. </p>
+                        <div class="control-group">
+                            <div class="controls">
+
+                                <button type="submit" class="btn btn-info">Save </button>
+                            </div>
+                        </div>
+                    </form:form>
 
                 </div>
 
@@ -90,36 +129,6 @@
         </div>
 
 
-
-        <!--/.fluid-container-->
-        <script src="resource/bootstrap/js/bootstrap.min.js"></script>
-        <script src="resource/bootstrap/js/bootstrap-datepicker.js"></script>
-
-        <script type="text/javascript" src="resource/bootstrap/js/bootstrap-datetimepicker.min.js"></script> 
-
-        <script src="resource/assets/scripts.js"></script>
-
-
-
-        <script src="resource/assets/DT_bootstrap.js"></script>
-        <script>
-            $(function() {
-
-
-                //alert('working');
-                //only timepicker.
-                $('#datetimepicker3').datetimepicker({
-                    pickDate: false
-                });
-
-                $('.datepicker').datepicker({
-                    format: 'dd/mm/yyyy'
-                });
-
-                // Easy pie charts
-                $('.chart').easyPieChart({animate: 1000});
-            });
-        </script>
 
     </body>
 </html>

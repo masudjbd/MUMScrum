@@ -3,14 +3,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
+<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <title>MUMScrum Project</title>
-        <link href="resource/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="resource/css/mumscrum.css" rel="stylesheet" type="text/css"/>
-        <script src="resource/js/jquery-1.9.1.min.js"></script>
-
+        <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+        <title>Employee List Page</title>
+        <link href="${pageContext.request.contextPath}/resource/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="${pageContext.request.contextPath}/resource/css/mumscrum.css" rel="stylesheet" type="text/css"/>
+        <script src="${pageContext.request.contextPath}/resource/js/jquery-1.9.1.min.js"></script>
     </head>
     <body>
 
@@ -55,9 +55,9 @@
                 </div>
             </div>
         </div>
-                                            
+
         <div style="margin-top: 50px;" class="clearfix"></div>
-        
+
         <div class="container-fluid">
             <div class="row-fluid">
 
@@ -73,16 +73,50 @@
                     </ul>
                 </div>
                 <div class="span9">
+                    <h1>Employee List Page</h1>
 
-                    <h1>
-                        <spring:message code="mumscrum.welcome.message" />
-                    </h1>
+                    <a href="${pageContext.request.contextPath}/employee/add" class="btn btn-info"><i class="icon icon-white icon-plus-sign"></i> Create Employee </a>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <c:forEach var="employee" items="${employees}" >
+                            <tr>
+                                <td>
+                                    ${employee.id}
+                                </td>
+                                <td>
+                                    ${employee.name}
+                                </td>
+                                <td>
+                                    ${employee.email}
+                                </td>
+                                <td>
+                                    ${employee.mobile}
+                                </td>
+                                <td>
+                                    ${employee.address}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="${pageContext.request.contextPath}/employee/edit/${employee.id}" 
+                                           class="btn btn-info"><i class="icon icon-white icon-edit"></i> Edit</a>
+                                        <a href="${pageContext.request.contextPath}/employee/delete/${employee.id}"
+                                           class="btn btn-danger"><i class="icon icon-white icon-trash"></i> Delete</a>
 
+                                    </div>
 
-
-
-
-                    <p>  The time on the server is ${serverTime}. </p>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
 
                 </div>
 
@@ -91,35 +125,6 @@
 
 
 
-        <!--/.fluid-container-->
-        <script src="resource/bootstrap/js/bootstrap.min.js"></script>
-        <script src="resource/bootstrap/js/bootstrap-datepicker.js"></script>
-
-        <script type="text/javascript" src="resource/bootstrap/js/bootstrap-datetimepicker.min.js"></script> 
-
-        <script src="resource/assets/scripts.js"></script>
-
-
-
-        <script src="resource/assets/DT_bootstrap.js"></script>
-        <script>
-            $(function() {
-
-
-                //alert('working');
-                //only timepicker.
-                $('#datetimepicker3').datetimepicker({
-                    pickDate: false
-                });
-
-                $('.datepicker').datepicker({
-                    format: 'dd/mm/yyyy'
-                });
-
-                // Easy pie charts
-                $('.chart').easyPieChart({animate: 1000});
-            });
-        </script>
 
     </body>
 </html>
