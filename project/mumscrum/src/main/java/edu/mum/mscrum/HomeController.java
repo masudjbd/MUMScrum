@@ -7,6 +7,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,7 @@ public class HomeController {
      * Simply selects the home view to render by returning its name.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String home(Locale locale, Model model, Principal principal ) {
+    public String home(Locale locale, Model model, Principal principal) {
         logger.info("Welcome home! The client locale is {}.", locale);
 
         Date date = new Date();
@@ -40,7 +41,14 @@ public class HomeController {
 
         model.addAttribute("username", principal.getName());
 
+//        if (LocaleContextHolder.getLocale().getDisplayLanguage() =="English")
+        model.addAttribute("lan",LocaleContextHolder.getLocale().getDisplayLanguage());
         return "home";
+    }
+
+    @RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
+    public String accessdeniedPage(Model model, Principal principal) {
+        return "accessdenied";
     }
 
 }

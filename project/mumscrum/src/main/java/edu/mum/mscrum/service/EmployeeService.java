@@ -16,5 +16,8 @@ public interface EmployeeService {
 
     public List<Employee> getEmployees();
     public void create(Employee empl);
+    public void delete(int id);
+    public Employee find(int id);
+    public Employee update(Employee empl);
     
 }

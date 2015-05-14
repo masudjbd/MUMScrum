@@ -23,10 +23,11 @@ public class Employee {
     @Id
     @GeneratedValue
     private int id;
-    @NotEmpty
+    @NotEmpty(message = "Name should not be empty")
     private String Name;
+//    @NotEmpty(message = "Name should not be empty")
     private String Mobile;
-    @Email
+    @NotEmpty(message = "Email should not be empty") @Email 
     private String Email;
     private String Address;
     @Temporal(TemporalType.DATE)
