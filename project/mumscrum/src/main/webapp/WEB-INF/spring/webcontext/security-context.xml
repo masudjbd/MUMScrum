@@ -6,11 +6,14 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <http  access-denied-page="/accessdenied" >
+        
                  <intercept-url pattern="/accessdenied" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
 
         <intercept-url pattern="/" access="ROLE_ADMIN, ROLE_PRODUCT_OWNER, ROLE_SCRUM_MASTER, ROLE_DEVELOPER, ROLE_TESTER" />
         <form-login login-page="/login" default-target-url="/" authentication-failure-url="/loginfailed" />
+        
         <intercept-url pattern="/employee/*" access="ROLE_ADMIN" /> 
+        
         <logout logout-success-url="/logout" />
  
     </http>

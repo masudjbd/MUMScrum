@@ -24,10 +24,11 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.MANDATORY)
 public class EmployeeRepositoryImpl extends GenericDaoImpl<Employee>  implements EmployeeRepository {
 
-    @Autowired
-    private SessionFactory sf;
+//    @Autowired
+//    private SessionFactory sf;
 
-//    @Override
+    
+////    @Override
 //    public List<Employee> getEmployees() {
 //        return sf.getCurrentSession().createQuery("From Employee").list();
 //    }
