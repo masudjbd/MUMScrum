@@ -11,6 +11,9 @@
         <title><tiles:insertAttribute ignore="true" name="title" /></title>
         <link href="${pageContext.request.contextPath}/resource/bootstrap/css/bootstrap.css"
               rel="stylesheet" />
+        
+        <link href="${pageContext.request.contextPath}/resource/bootstrap/css/datepicker.css"
+              rel="stylesheet" />
         <link href="${pageContext.request.contextPath}/resource/css/mumscrum.css"
               rel="stylesheet" />
         <script src="${pageContext.request.contextPath}/resource/js/jquery-1.9.1.min.js"></script>
@@ -44,27 +47,18 @@
 
         <script type="text/javascript" src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap-datetimepicker.min.js"></script> 
 
-        <script src="${pageContext.request.contextPath}/resource/assets/scripts.js"></script>
+ 
 
 
-
-        <script src="${pageContext.request.contextPath}/resource/assets/DT_bootstrap.js"></script>
-        <script>
+         <script>
             $(function() {
 
-
-                //alert('working');
-                //only timepicker.
-                $('#datetimepicker3').datetimepicker({
-                    pickDate: false
-                });
-
+                 
                 $('.datepicker').datepicker({
                     format: 'dd/mm/yyyy'
                 });
 
-                // Easy pie charts
-                $('.chart').easyPieChart({animate: 1000});
+                
             });
         </script>
     </body>

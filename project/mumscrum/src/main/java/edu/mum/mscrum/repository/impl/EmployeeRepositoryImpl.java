@@ -6,6 +6,7 @@
 package edu.mum.mscrum.repository.impl;
 
 import edu.mum.mscrum.domain.Employee;
+import edu.mum.mscrum.domain.Role;
 import edu.mum.mscrum.repository.EmployeeRepository;
 import edu.mum.mscrum.util.GenericDaoImpl;
 import java.util.List;
@@ -21,13 +22,12 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 @Repository
-@Transactional(propagation = Propagation.MANDATORY)
-public class EmployeeRepositoryImpl extends GenericDaoImpl<Employee>  implements EmployeeRepository {
+@Transactional
+public class EmployeeRepositoryImpl extends GenericDaoImpl<Employee> implements EmployeeRepository {
 
-//    @Autowired
-//    private SessionFactory sf;
+    @Autowired
+    private SessionFactory sf;
 
-    
 ////    @Override
 //    public List<Employee> getEmployees() {
 //        return sf.getCurrentSession().createQuery("From Employee").list();
@@ -37,6 +37,10 @@ public class EmployeeRepositoryImpl extends GenericDaoImpl<Employee>  implements
 //    public void create(Employee empl) {
 //        sf.getCurrentSession().persist(empl);
 //    }
+//    @Override
+//    public List<Role> getRoleList() {
+//
+//        return sf.getCurrentSession().createQuery("from Role").list();
+//    }
 
-     
 }

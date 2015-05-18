@@ -1,23 +1,30 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+             xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/security
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
     
     <http  access-denied-page="/accessdenied" >
         
-                 <intercept-url pattern="/accessdenied" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
+        <intercept-url pattern="/accessdenied" access="IS_AUTHENTICATED_ANONYMOUSLY" /> 
 
         <intercept-url pattern="/" access="ROLE_ADMIN, ROLE_PRODUCT_OWNER, ROLE_SCRUM_MASTER, ROLE_DEVELOPER, ROLE_TESTER" />
-        <form-login login-page="/login" default-target-url="/" authentication-failure-url="/loginfailed" />
+        <form-login login-page="/login" 
+                    default-target-url="/" 
+                    authentication-failure-url="/loginfailed"
+                    username-parameter="username"
+                    password-parameter="password" 
+                    login-processing-url="/auth/login_check" 
+        />
         
         <intercept-url pattern="/employee/*" access="ROLE_ADMIN" /> 
         
         <logout logout-success-url="/logout" />
  
     </http>
-     <authentication-manager>
+    
+    <!--     <authentication-manager>
         <authentication-provider>
           <password-encoder ref="encoder" />
             <user-service>
@@ -28,13 +35,21 @@
                 <user name="tester" password="$2a$10$u1ZdiMaD5crELFSj5o9vTO0ipenRrs8JjpKn8/UXcWgvNILI3b99." authorities="ROLE_TESTER" />
             </user-service>
         </authentication-provider>
-    </authentication-manager>
+    </authentication-manager>-->
+    <beans:bean id="dataSourceSecurity" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <beans:property name="url" value="jdbc:mysql://localhost:3306/mumscrum?zeroDateTimeBehavior=convertToNull" />
+        <beans:property name="username" value="root" />
+        <beans:property name="password" value="" />
+    </beans:bean>
     <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
 
-    	<beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		<!--<beans:constructor-arg name="strength" value="10" />-->
-	</beans:bean>
-<!--     <authentication-manager>
+    <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+        <beans:constructor-arg name="strength" value="10" />
+    </beans:bean>
+        
+    <!--     <authentication-manager>
         <authentication-provider>
             <user-service>
                  <password-encoder hash="bcrypt" />
@@ -43,19 +58,15 @@
             </user-service>
         </authentication-provider>
     </authentication-manager>-->
-<!--    <authentication-manager>
+    
+    <authentication-manager>
         <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSource">
+            <password-encoder ref="encoder" />
+            <jdbc-user-service data-source-ref="dataSourceSecurity"
+                               users-by-username-query="select username,password, enabled from users where username=?"
+                               authorities-by-username-query="select username, role from user_roles where username =?" />
+        </authentication-provider>
     </authentication-manager>
-</authentication-provider>
 
-<bean id="dataSource"
-  class="rog.springframework.jdbc.datasource.DriverManagerDatasource">
-<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-<property name="url" value="jdbc://localhost/webstore" />
-<property name="username" value="root" />
-<property name="password" value="" />
-</bean>
-    -->
-        
+ 
 </beans:beans>

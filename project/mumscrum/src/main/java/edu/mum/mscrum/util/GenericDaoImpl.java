@@ -7,8 +7,10 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * @param <T>
  * @ref link
  * http://www.codeproject.com/Articles/251166/The-Generic-DAO-pattern-in-Java-with-Spring-3-and
  * @ref link
@@ -17,10 +19,19 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unchecked")
 @Repository
+@Transactional
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Autowired
     private SessionFactory sf;
+
+    public SessionFactory getSf() {
+        return sf;
+    }
+
+    public void setSf(SessionFactory sf) {
+        this.sf = sf;
+    }
 
     protected Class<? extends T> daoType;
 
@@ -40,7 +51,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     public void delete(int id) {
 
         T t = (T) sf.getCurrentSession()
-                .load(daoType, id);
+                .get(daoType, id);
         if (null != t) {
             sf.getCurrentSession().delete(t);
         }
@@ -49,7 +60,9 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Override
     public T find(int id) {
-        return (T) sf.getCurrentSession().get(daoType, id);
+         T t = (T) sf.getCurrentSession()
+                .get(daoType, id);
+        return (T)t;// sf.getCurrentSession().get(daoType, id);
     }
 
     @Override

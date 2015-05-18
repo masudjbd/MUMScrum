@@ -59,7 +59,9 @@
                     <li><a href="">Burndown Chart</a></li>
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li><a href="${pageContext.request.contextPath}/employee/list">Employees</a></li>
-                        </sec:authorize>
+                        <li><a href="${pageContext.request.contextPath}/employee/assignrole">Assign Role</a></li>
+
+                    </sec:authorize>
 
                 </ul>
             </div>

@@ -6,6 +6,7 @@
 package edu.mum.mscrum.service;
 
 import edu.mum.mscrum.domain.Employee;
+import edu.mum.mscrum.domain.Role;
 import java.util.List;
 
 /**
@@ -19,5 +20,7 @@ public interface EmployeeService {
     public void delete(int id);
     public Employee find(int id);
     public Employee update(Employee empl);
+    public List<Role> getRoles();
+    public void assignRole(int empId, int roleId);
     
 }

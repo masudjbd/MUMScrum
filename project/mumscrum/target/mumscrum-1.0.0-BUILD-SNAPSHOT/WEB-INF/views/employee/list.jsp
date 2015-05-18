@@ -27,7 +27,7 @@
                 ${employee.id}
             </td>
             <td>
-                ${employee.name}
+                ${employee.firstname}  ${employee.lastname}
             </td>
             <td>
                 ${employee.email}

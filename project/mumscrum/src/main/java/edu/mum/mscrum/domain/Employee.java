@@ -5,17 +5,26 @@
  */
 package edu.mum.mscrum.domain;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.validator.constraints.*;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
- * @author Masudur Rahman <masud.java@gmail.com>
+ * @author HabibRahman
  */
 @Entity
 public class Employee {
@@ -23,25 +32,46 @@ public class Employee {
     @Id
     @GeneratedValue
     private int id;
-    @NotEmpty(message = "Name should not be empty")
-    private String Name;
-//    @NotEmpty(message = "Name should not be empty")
-    private String Mobile;
-    @NotEmpty(message = "Email should not be empty") @Email 
-    private String Email;
-    private String Address;
+
+    private String empcode;
+
+    @NotEmpty
+    private String firstname;
+    private String lastname;
+
+    private String email;
+    private String mobile;
+    private String address;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
-    private Date DateOfBirth;
+    private Date dateOfJoin;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+
+    @NotNull
+    private String gender;
+
+    @NotNull
+    private double salary;
+    private String department;
+    private String designation;
+    private String ssnNo;
+
+    @OneToOne
+    private Employee upperPos;
+
+//    @OneToMany
+//    private List<Employee> lowerPos = new ArrayList();    
+//    private List<Address> address;
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Role> roles;
 
     public Employee() {
-    }
-
-    public Employee(String Name, String Mobile, String Email, String Address, Date DateOfBirth) {
-        this.Name = Name;
-        this.Mobile = Mobile;
-        this.Email = Email;
-        this.Address = Address;
-        this.DateOfBirth = DateOfBirth;
     }
 
     public int getId() {
@@ -52,44 +82,130 @@ public class Employee {
         this.id = id;
     }
 
-    public String getName() {
-        return Name;
+    public String getEmpcode() {
+        return empcode;
     }
 
-    public void setName(String Name) {
-        this.Name = Name;
+    public void setEmpcode(String empcode) {
+        this.empcode = empcode;
     }
 
-    public String getMobile() {
-        return Mobile;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setMobile(String Mobile) {
-        this.Mobile = Mobile;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
-    public void setEmail(String Email) {
-        this.Email = Email;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
-    public void setAddress(String Address) {
-        this.Address = Address;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public Date getDateOfBirth() {
-        return DateOfBirth;
+    public Employee getUpperPos() {
+        return upperPos;
     }
 
-    public void setDateOfBirth(Date DateOfBirth) {
-        this.DateOfBirth = DateOfBirth;
+    public void setUpperPos(Employee upperPos) {
+        this.upperPos = upperPos;
     }
 
+    public Date getDateOfJoin() {
+        return dateOfJoin;
+    }
+
+    public void setDateOfJoin(Date dateOfJoin) {
+        this.dateOfJoin = dateOfJoin;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String Designation) {
+        this.designation = Designation;
+    }
+
+    public String getSsnNo() {
+        return ssnNo;
+    }
+
+    public void setSsnNo(String ssnNo) {
+        this.ssnNo = ssnNo;
+    }
+
+//    public List<Address> getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(List<Address> address) {
+//        this.address = address;
+//    }
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }

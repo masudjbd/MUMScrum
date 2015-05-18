@@ -6,6 +6,7 @@
 package edu.mum.mscrum.repository;
 
 import edu.mum.mscrum.domain.Employee;
+import edu.mum.mscrum.domain.Role;
 import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
@@ -15,5 +16,6 @@ import java.util.List;
  */
 public interface EmployeeRepository extends GenericDao<Employee> {
 
-
+    
+    
 }
