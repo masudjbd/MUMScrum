@@ -27,11 +27,10 @@ public class ProductBacklogReposatoryImpl extends GenericDaoImpl<ProductBacklog>
     @Autowired
     private SessionFactory sf;
 
-    @Override
     @SuppressWarnings("unchecked")
+    @Override
     public List<ProductBacklog> getListById(int ownerId) {
-        List<ProductBacklog> pbList = (List<ProductBacklog>) sf.getCurrentSession().createQuery("from ProductBacklog p WHERE p.productOwner.id=" + ownerId + " ").list();
-        return pbList;
-    }
+        return (List<ProductBacklog>) sf.getCurrentSession().createQuery("from ProductBacklog p WHERE p.productOwner.id=" + ownerId + " ").list();
+     }
 
 }
