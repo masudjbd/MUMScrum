@@ -28,13 +28,13 @@ public class UserStoryReposatoryImpl extends GenericDaoImpl<UserStory> implement
     @Autowired
     private SessionFactory sf;
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public List<UpdateDevelopment> getUpdateDevelopmentByUsId(int usId) {
         List<UpdateDevelopment> upDList = sf.getCurrentSession().createQuery("from UpdateDevelopment WHERE userstory_id='" + usId + "' ").list();
         return upDList;
     }
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public List<UpdateTesting> getUpdateTestingByUsId(int usId) {
         List<UpdateTesting> upDList = sf.getCurrentSession().createQuery("from UpdateTesting WHERE userstory_id='" + usId + "' ").list();
         return upDList;

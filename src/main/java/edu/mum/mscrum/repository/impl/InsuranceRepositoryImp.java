@@ -27,7 +27,7 @@ public class InsuranceRepositoryImp extends GenericDaoImpl<Insurance> implements
      @Autowired
     private SessionFactory sf;
      
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public List<InsuranceType> getTypeList() {
        return this.getSf().getCurrentSession().createQuery("from InsuranceType").list();
     }

@@ -28,7 +28,7 @@ public class LeaveRepositoryImp extends GenericDaoImpl<Employeevacation> impleme
     private SessionFactory sf;
 
      
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public List<LeaveType> getTypeList() {
          return this.getSf().getCurrentSession().createQuery("from LeaveType").list();
     }

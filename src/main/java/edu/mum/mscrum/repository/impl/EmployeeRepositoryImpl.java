@@ -40,7 +40,7 @@ public class EmployeeRepositoryImpl extends GenericDaoImpl<Employee> implements 
         return (Employee) sf.getCurrentSession().createQuery("from Employee WHERE username='" + str + "' ").uniqueResult();
     }
 
-    @Override
+    @Override @SuppressWarnings("unchecked")
     public List<Employee> getAllScrumMasters() {
         return (List<Employee>)sf.getCurrentSession().createQuery("from Employee").list();
     }
