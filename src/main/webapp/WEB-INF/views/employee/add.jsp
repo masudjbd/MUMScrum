@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="mumscrum" tagdir="/WEB-INF/tags" %>
 
 
 
@@ -9,80 +10,29 @@
 
 <form:form class="form-horizontal" commandName="employee" method="post">
 
+ 
     <div class="row">
 
         <div class="span5">
-            <div class="control-group">
-                <label class="control-label" for="inputEmpCode">Employee Code</label>
-                <div class="controls">
-                    <form:input type="text" path="empcode" id="inputEmpCode" placeholder="Employee Code" />
-                    <form:errors path="empcode" cssClass="error" />
-                </div>
-            </div>
 
-            <div class="control-group">
-                <label class="control-label" for="inputFName">First Name</label>
-                <div class="controls">
-                    <form:input type="text" path="firstname" id="inputFName" placeholder="First Name" />
-                    <form:errors path="firstname" cssClass="error" />
-                </div>
-            </div>
+            <mumscrum:input label="Emloyee Code" name="empcode" />
 
-            <div class="control-group">
-                <label class="control-label" for="inputLName">Last Name</label>
-                <div class="controls">
-                    <form:input type="text" path="lastname" id="inputLName" placeholder="Last Name" />
-                    <form:errors path="lastname" cssClass="error" />
-                </div>
-            </div>
+            <mumscrum:input label="First Name" name="firstname" />
 
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Email</label>
-                <div class="controls">
-                    <form:input type="text" path="email" id="inputEmail" placeholder="Email" />
-                    <form:errors path="email" cssClass="error" />
+            <mumscrum:input label="Last Name" name="lastname" />
 
-                </div>
-            </div>
+            <mumscrum:input label="Email" name="email" />
+
+            <mumscrum:input label="Mobile" name="mobile" />
 
 
-            <div class="control-group">
-                <label class="control-label" for="inputMobile">Mobile</label>
-                <div class="controls">
-                    <form:input type="text" path="mobile" id="inputMobile" placeholder="Mobile" />
-                    <form:errors path="mobile" cssClass="error" />
-
-                </div>
-            </div>
+            <mumscrum:input label="Address" name="address" />
+            <mumscrum:input label="SSN No" name="ssnNo" />
 
 
 
-            <div class="control-group">
-                <label class="control-label" for="inputAddress">Address</label>
-                <div class="controls">
-                    <form:input type="text" path="address" id="inputAddress"
-                                placeholder="Address" />
-                    <form:errors path="address" cssClass="error" />
 
-                </div>
-            </div>
 
-            <div class="control-group">
-                <label class="control-label" for="inputssnNo">SSN No</label>
-                <div class="controls">
-                    <form:input type="text" path="ssnNo" id="inputssnNo"
-                                placeholder="SSN" />
-                    <form:errors path="ssnNo" cssClass="error" />
-
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="controls">
-
-                    <button type="submit" class="btn btn-info">Save </button>
-                </div>
-            </div>
         </div>
 
         <div class="span5">
@@ -102,7 +52,7 @@
                 <label class="control-label" for="inputbirthDate">Birth Date</label>
                 <div class="controls">
                     <form:input readonly="readonly"  class="datepicker" type="text" path="birthDate" id="inputbirthDate"
-                                 placeholder="Birth Date" />
+                                placeholder="Birth Date" />
                     <form:errors path="birthDate" cssClass="error" />
 
                 </div>
@@ -153,8 +103,52 @@
 
 
 
-        </div>  
 
+
+
+
+
+        </div>  
+        <div   class="span12">
+
+            <fieldset>
+                <legend>User Credential</legend>
+
+                <div class="span5">
+
+                    <div class="control-group">
+                        <label class="control-label" for="username">Username</label>
+                        <div class="controls">
+                            <form:input type="text" path="username" id="username"
+                                        placeholder="Username" />
+                            <form:errors path="username" cssClass="error" />
+
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <label class="control-label" for="password">Password</label>
+                        <div class="controls">
+                            <form:input type="password" path="password" id="password"
+                                        placeholder="password" />
+                            <form:errors path="password" cssClass="error" />
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+
+                            <button type="submit" class="btn btn-info">Save </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="span5">
+
+
+                </div>
+
+            </fieldset>  
+        </div>
     </div>
 </form:form>
 

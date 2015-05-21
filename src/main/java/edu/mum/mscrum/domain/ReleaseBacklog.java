@@ -6,14 +6,12 @@
 package edu.mum.mscrum.domain;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -32,16 +30,32 @@ public class ReleaseBacklog {
     @Temporal(TemporalType.DATE)
     private Date createDate;
 
-    @ManyToOne
-    //@JoinColumn(name="")
+    @OneToOne(cascade = CascadeType.MERGE)   
+    private Employee productOwner;
+    
+    @ManyToOne(cascade = CascadeType.MERGE)    
     private ProductBacklog productBacklog;
     
-    @OneToMany(mappedBy = "releaseBacklog", cascade = CascadeType.ALL)
-    private List<Sprint> sprints;
-    
-    @OneToMany(mappedBy = "releaseBacklog", cascade = CascadeType.ALL)
-    private List<UserStory> userStories;
+    public ReleaseBacklog() {
+    }
 
+    public ProductBacklog getProductBacklog() {
+        return productBacklog;
+    }
+
+    public void setProductBacklog(ProductBacklog productBacklog) {
+        this.productBacklog = productBacklog;
+    }
+
+    public Employee getProductOwner() {
+        return productOwner;
+    }
+
+    public void setProductOwner(Employee productOwner) {
+        this.productOwner = productOwner;
+    }
+
+    
     public int getId() {
         return id;
     }
@@ -65,29 +79,6 @@ public class ReleaseBacklog {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-
-    public ProductBacklog getProductBacklog() {
-        return productBacklog;
-    }
-
-    public void setProductBacklog(ProductBacklog productBacklog) {
-        this.productBacklog = productBacklog;
-    }
-
-    public List<Sprint> getSprints() {
-        return sprints;
-    }
-
-    public void setSprints(List<Sprint> sprints) {
-        this.sprints = sprints;
-    }
-
-    public List<UserStory> getUserStories() {
-        return userStories;
-    }
-
-    public void setUserStories(List<UserStory> userStories) {
-        this.userStories = userStories;
-    }
+   
    
 }

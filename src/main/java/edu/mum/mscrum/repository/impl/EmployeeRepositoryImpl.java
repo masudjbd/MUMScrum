@@ -6,6 +6,7 @@
 package edu.mum.mscrum.repository.impl;
 
 import edu.mum.mscrum.domain.Employee;
+import edu.mum.mscrum.domain.ProductOwner;
 import edu.mum.mscrum.domain.Role;
 import edu.mum.mscrum.repository.EmployeeRepository;
 import edu.mum.mscrum.util.GenericDaoImpl;
@@ -22,25 +23,26 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 @Repository
-@Transactional
+@Transactional(propagation = Propagation.MANDATORY)
 public class EmployeeRepositoryImpl extends GenericDaoImpl<Employee> implements EmployeeRepository {
 
     @Autowired
     private SessionFactory sf;
 
-////    @Override
-//    public List<Employee> getEmployees() {
-//        return sf.getCurrentSession().createQuery("From Employee").list();
-//    }
-//
-//    @Override
-//    public void create(Employee empl) {
-//        sf.getCurrentSession().persist(empl);
-//    }
-//    @Override
-//    public List<Role> getRoleList() {
-//
-//        return sf.getCurrentSession().createQuery("from Role").list();
-//    }
+    @Override
+    public ProductOwner findProductOwner(int id) {
+        ProductOwner productowner = (ProductOwner) sf.getCurrentSession().load(ProductOwner.class, id);
+        return productowner;
+    }
+
+    @Override
+    public Employee findByUsername(String str) {
+        return (Employee) sf.getCurrentSession().createQuery("from Employee WHERE username='" + str + "' ").uniqueResult();
+    }
+
+    @Override
+    public List<Employee> getAllScrumMasters() {
+        return (List<Employee>)sf.getCurrentSession().createQuery("from Employee").list();
+    }
 
 }

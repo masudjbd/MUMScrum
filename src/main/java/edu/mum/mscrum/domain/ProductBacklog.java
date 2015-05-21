@@ -6,17 +6,15 @@
 package edu.mum.mscrum.domain;
 
 import java.util.Date;
-import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+
 import javax.validation.constraints.NotNull;
 
 /**
@@ -34,31 +32,19 @@ public class ProductBacklog {
     @Temporal(TemporalType.DATE)
     private Date createDate;
     
-    @ManyToOne
-    @JoinColumn(name="owner_id")
-    private ProductOwner productOwner;
-    
-    @OneToMany(mappedBy = "productBacklog", cascade = CascadeType.ALL)    
-    List<ReleaseBacklog> releaseBacklogs;
-    
-    @OneToMany(mappedBy = "productBacklog", cascade = CascadeType.ALL)    
-    List<UserStory> userStories;
+    @OneToOne(cascade = CascadeType.MERGE)   
+    private Employee productOwner;
 
-    public List<UserStory> getUserStories() {
-        return userStories;
+    public Employee getProductOwner() {
+        return productOwner;
     }
 
-    public void setUserStories(List<UserStory> userStories) {
-        this.userStories = userStories;
+    public void setProductOwner(Employee productOwner) {
+        this.productOwner = productOwner;
     }
+      
 
-    public List<ReleaseBacklog> getReleaseBacklogs() {
-        return releaseBacklogs;
-    }
-
-    public void setReleaseBacklogs(List<ReleaseBacklog> releaseBacklogs) {
-        this.releaseBacklogs = releaseBacklogs;
-    }
+   
 
     public int getId() {
         return id;
@@ -83,6 +69,8 @@ public class ProductBacklog {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+   
     
     
 }

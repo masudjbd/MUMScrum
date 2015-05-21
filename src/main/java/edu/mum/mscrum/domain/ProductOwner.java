@@ -5,12 +5,15 @@
  */
 package edu.mum.mscrum.domain;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 /**
@@ -18,17 +21,20 @@ import javax.persistence.Transient;
  * @author HabibRahman
  */
 @Entity
-public class ProductOwner {
-   
-   @Id @GeneratedValue 
-   private int id;
-   
-   @OneToMany(mappedBy = "productOwner", cascade = CascadeType.ALL)
-   private List<ProductBacklog> productBacklogs;   
+public class ProductOwner extends Role {
 
-   @OneToMany(mappedBy = "productOwner", cascade = CascadeType.ALL)
-   //@Transient
-   private List<UserStory> userStoris;
+    @GeneratedValue
+    private int id;
+    @Temporal(TemporalType.DATE)
+    private Date startDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
+    @OneToMany(mappedBy = "productOwner", cascade = CascadeType.ALL)
+    private List<ProductBacklog> productBacklogs;
+
+    @OneToMany(mappedBy = "productOwner", cascade = CascadeType.ALL)
+    //@Transient
+    private List<UserStory> userStoris;
 
     public int getId() {
         return id;
@@ -46,7 +52,6 @@ public class ProductOwner {
         this.productBacklogs = productBacklogs;
     }
 
-    
     public List<UserStory> getUserStoris() {
         return userStoris;
     }
@@ -54,6 +59,5 @@ public class ProductOwner {
     public void setUserStoris(List<UserStory> userStoris) {
         this.userStoris = userStoris;
     }
-   
-   
+
 }

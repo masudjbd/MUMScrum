@@ -8,8 +8,7 @@ package edu.mum.mscrum.controller;
 import edu.mum.mscrum.domain.Employee;
 import edu.mum.mscrum.domain.Role;
 import edu.mum.mscrum.service.EmployeeService;
-import edu.mum.mscrum.util.GenericDao;
-import edu.mum.mscrum.util.GenericDaoImpl;
+import edu.mum.mscrum.service.RoleService;
 import java.io.IOException;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
@@ -23,6 +22,7 @@ import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -46,8 +47,9 @@ public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
+
     
-     
+    
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -56,33 +58,29 @@ public class EmployeeController {
 
     @RequestMapping({"/", "/list"})
     public String getList(Model model, Principal principal) {
-
-//        Employee empl = new Employee();
-//        empl.setName("Masudur Rahman");
-//        empl.setAddress("Fairfield, IA");
-//        empl.setMobile("02005");
-//        empl.setEmail("masudjbd@gmail.com");
-//
-//        employeeService.create(empl);
-        model.addAttribute("username", principal.getName());
-
-        model.addAttribute("employees", employeeService.getEmployees());
+       model.addAttribute("username", principal.getName());
+       model.addAttribute("employees", employeeService.getEmployees());
 
         return "employee/list";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("employee") Employee employee, Principal principal, Model model) {
-        model.addAttribute("username", principal.getName());
         return "employee/add";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProcess(@Valid Employee employee, BindingResult br, RedirectAttributes ra, Principal principal, Model model) {
-        model.addAttribute("username", principal.getName());
+
+        //password hashing by bcrypt
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(employee.getPassword());
+                employee.setPassword(hashedPassword);
+        
         if (br.hasErrors()) {
             return "employee/add";
         } else {
+            employee.setEnabled(true);
             employeeService.create(employee);
             ra.addFlashAttribute("message", "Successfully added employee");
             return "redirect:/employee/list";
@@ -91,7 +89,6 @@ public class EmployeeController {
 
     @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
     public String details(@PathVariable int id, Model model, Principal principal) {
-        model.addAttribute("username", principal.getName());
         model.addAttribute("employee", employeeService.find(id));
         return "employee/details";
 
@@ -99,7 +96,6 @@ public class EmployeeController {
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String getDetails(@PathVariable int id, Model model, Principal principal) {
-        model.addAttribute("username", principal.getName());
         model.addAttribute("employee", employeeService.find(id));
         return "employee/edit";
 
@@ -108,7 +104,6 @@ public class EmployeeController {
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String updateDetails(Model model, @Valid Employee employee, @PathVariable int id,
             BindingResult br, RedirectAttributes rAttributes, Principal principal) {
-        model.addAttribute("username", principal.getName());
 
         if (br.hasErrors()) {
             model.addAttribute("employee", employee);
@@ -130,11 +125,13 @@ public class EmployeeController {
         return "redirect:/employee/";
     }
 
+
     @RequestMapping(value = "/assignrole", method = RequestMethod.GET)
     public String getAssignRole(Model model, Principal principal) {
-        model.addAttribute("username", principal.getName());
         model.addAttribute("employees", employeeService.getEmployees());
         model.addAttribute("roles", employeeService.getRoles());
+//        String l = employeeService.getRoles().toString();
+//        System.out.println(" error "+l);
         return "employee/assignrole";
 
     }
@@ -156,18 +153,10 @@ public class EmployeeController {
         String lp = "";
         JsonNode arrNode = actualObj.get("roles");
 
-        Iterator<JsonNode> ite = arrNode.getElements();
-
-        while (ite.hasNext()) {
-            JsonNode temp = ite.next();
-            System.out.println(temp.getTextValue());
-            lp += temp.getTextValue();
-            
-
-        }
         
+        
+        employeeService.assignRole(empId, arrNode);
         
         return lp + "working " + res + " >> " + actualObj.get("id") + " " + empl.getFirstname();
     }
-
 }

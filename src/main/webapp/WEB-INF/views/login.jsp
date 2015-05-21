@@ -13,9 +13,10 @@
     <body> 
 
 
-        <div class="container" style="margin-top: 200px;">
+        <div class="container" style="margin-top: 200px; -moz-border-radius: 5px; border-radius: 5px; border: 1px solid #EAEAEA; background: #EEE; width: 400px;">
+            <center><h3>MUMScrum Login</h3></center>
             <div class="row">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-12 col-md-offset-12">
                     <div class="panel panel-default">
                         <div class="panel-heading" >
                             <h3 class="panel-title">Please sign in</h3>
@@ -31,21 +32,21 @@
                             <form action="<c:url value="/auth/login_check"></c:url>"
                                   method="post">
 
-                                <fieldset>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="User Name"
-                                               name='username' type="text" />
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="form-control" placeholder="Password"
-                                               name='password' type="password" value="" />
-                                    </div>
-                                    <input class="btn btn-lg btn-success btn-block" type="submit"
-                                           value="Login">
-                                </fieldset>
-                                
-                                 <input type="hidden" name="${_csrf.parameterName}"
-                       value="${_csrf.token}" />
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="User Name"
+                                                   name='username' type="text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <input class="form-control" placeholder="Password"
+                                                   name='password' type="password" value="" />
+                                        </div>
+                                        <input class="btn btn-lg btn-success btn-block" type="submit"
+                                               value="Login">
+                                    </fieldset>
+
+                                    <input type="hidden" name="${_csrf.parameterName}"
+                                       value="${_csrf.token}" />
                             </form>
                         </div>
                     </div>

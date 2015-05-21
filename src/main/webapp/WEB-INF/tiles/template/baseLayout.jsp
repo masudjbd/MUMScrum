@@ -39,13 +39,15 @@
             </div>
         </div>
                     
-                    
-                    
+    <center>
+                    <span class="help-inline"><i>&copy; Tiger [at] MUM - SWE - 2015</i></span>           
+    </center>
         <!--/.fluid-container-->
         <script src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap.min.js"></script>
         <script src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap-datepicker.js"></script>
 
-        <script type="text/javascript" src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap-datetimepicker.min.js"></script> 
+        <script type="text/javascript" 
+		src="${pageContext.request.contextPath}/resource/bootstrap/js/bootstrap-datetimepicker.min.js"></script> 
 
  
 

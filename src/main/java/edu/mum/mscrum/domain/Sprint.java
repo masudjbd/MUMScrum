@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,26 +25,46 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class Sprint {
-   @Id @GeneratedValue
+
+    @Id
+    @GeneratedValue
+
     private int id;
-    private String sprintName;
+    private String sprintname;
+
+    public String getSprintname() {
+        return sprintname;
+    }
+
+    public void setSprintname(String sprintname) {
+        this.sprintname = sprintname;
+    }
+
     @Temporal(TemporalType.DATE)
     private Date createDate;
+
+    @OneToOne(cascade = CascadeType.MERGE)
+    private Employee scrumMaster;
     
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private ReleaseBacklog releaseBacklog;     
     
-    @ManyToOne
-    private ScrumMaster scrumMaster;
-    
-    @OneToMany(mappedBy = "sprint", cascade = CascadeType.ALL)
-    private List<UserStory> userStories; 
+    public Sprint() {
+    }
 
-    public ScrumMaster getScrumMaster() {
+    public ReleaseBacklog getReleaseBacklog() {
+        return releaseBacklog;
+    }
+
+    public void setReleaseBacklog(ReleaseBacklog releaseBacklog) {
+        this.releaseBacklog = releaseBacklog;
+    }
+
+    public Employee getScrumMaster() {
         return scrumMaster;
     }
 
-    public void setScrumMaster(ScrumMaster scrumMaster) {
+    public void setScrumMaster(Employee scrumMaster) {
         this.scrumMaster = scrumMaster;
     }
 
@@ -55,14 +76,6 @@ public class Sprint {
         this.id = id;
     }
 
-    public String getSprintName() {
-        return sprintName;
-    }
-
-    public void setSprintName(String sprintName) {
-        this.sprintName = sprintName;
-    }
-
     public Date getCreateDate() {
         return createDate;
     }
@@ -71,21 +84,4 @@ public class Sprint {
         this.createDate = createDate;
     }
 
-    public ReleaseBacklog getReleaseBacklog() {
-        return releaseBacklog;
-    }
-
-    public void setReleaseBacklog(ReleaseBacklog releaseBacklog) {
-        this.releaseBacklog = releaseBacklog;
-    }
-
-    public List<UserStory> getUserStories() {
-        return userStories;
-    }
-
-    public void setUserStories(List<UserStory> userStories) {
-        this.userStories = userStories;
-    }
-    
-    
 }

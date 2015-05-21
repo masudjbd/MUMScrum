@@ -6,10 +6,14 @@
 package edu.mum.mscrum.domain;
 
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,21 +32,33 @@ public class UserStory {
     private String description;
     @Temporal(TemporalType.DATE)
     private Date createDate;
+
     private double developerEstimateTime;
     private double testerEstimateTime;
-    private double developerRemainingTime;
-    private double testerRemainingTime;
 
-    @ManyToOne
-    private ProductOwner productOwner;
-    @ManyToOne
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="userstory_id")
+    private List<UpdateDevelopment> updateDevelopments;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="userstory_id")
+    private List<UpdateTesting> updateTestings;
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Employee productOwner;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Employee scrumMaster;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Employee developer;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Employee tester;
+    
+    @ManyToOne(cascade = CascadeType.MERGE)
     private ProductBacklog productBacklog;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private ReleaseBacklog releaseBacklog;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Sprint sprint;
-    @ManyToOne
-    private Developer developer;
 
     public int getId() {
         return id;
@@ -92,29 +108,25 @@ public class UserStory {
         this.testerEstimateTime = testerEstimateTime;
     }
 
-    public double getDeveloperRemainingTime() {
-        return developerRemainingTime;
+    public List<UpdateDevelopment> getUpdateDevelopments() {
+        return updateDevelopments;
     }
 
-    public void setDeveloperRemainingTime(double developerRemainingTime) {
-        this.developerRemainingTime = developerRemainingTime;
+    public void setUpdateDevelopments(List<UpdateDevelopment> updateDevelopments) {
+        this.updateDevelopments = updateDevelopments;
     }
 
-    public double getTesterRemainingTime() {
-        return testerRemainingTime;
+    public List<UpdateTesting> getUpdateTestings() {
+        return updateTestings;
     }
 
-    public void setTesterRemainingTime(double testerRemainingTime) {
-        this.testerRemainingTime = testerRemainingTime;
+    public void setUpdateTestings(List<UpdateTesting> updateTestings) {
+        this.updateTestings = updateTestings;
     }
 
-    public ProductOwner getProductOwner() {
-        return productOwner;
-    }
+    
 
-    public void setProductOwner(ProductOwner productOwner) {
-        this.productOwner = productOwner;
-    }
+     
 
     public ProductBacklog getProductBacklog() {
         return productBacklog;
@@ -140,12 +152,39 @@ public class UserStory {
         this.sprint = sprint;
     }
 
-    public Developer getDeveloper() {
+    public Employee getProductOwner() {
+        return productOwner;
+    }
+
+    public void setProductOwner(Employee productOwner) {
+        this.productOwner = productOwner;
+    }
+
+    public Employee getScrumMaster() {
+        return scrumMaster;
+    }
+
+    public void setScrumMaster(Employee scrumMaster) {
+        this.scrumMaster = scrumMaster;
+    }
+
+    public Employee getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(Developer developer) {
+    public void setDeveloper(Employee developer) {
         this.developer = developer;
     }
 
+    public Employee getTester() {
+        return tester;
+    }
+
+    public void setTester(Employee tester) {
+        this.tester = tester;
+    }
+
+    
+
+    
 }

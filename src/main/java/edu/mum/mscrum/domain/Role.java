@@ -25,13 +25,15 @@ public class Role {
     @Id @GeneratedValue
     private int roleId;
     private String roleName;
+    private String roleLabel;
+
+   
+//    @JoinTable(name="employee_roles_relation",  
+//        joinColumns={@JoinColumn(name="role_id", referencedColumnName="roleId")},  
+//        inverseJoinColumns={@JoinColumn(name="employee_id", referencedColumnName="id")})
     
-    @JoinTable(name="employee_roles_relation",  
-        joinColumns={@JoinColumn(name="role_id", referencedColumnName="roleId")},  
-        inverseJoinColumns={@JoinColumn(name="employee_id", referencedColumnName="id")})
-    
-    @ManyToOne    
-    private Employee employee;
+//    @ManyToOne    
+//    private Employee employee;
 
     public Role() {
     }   
@@ -43,7 +45,15 @@ public class Role {
     public void setRoleId(int roleId) {
         this.roleId = roleId;
     }
+    
+ public String getRoleLabel() {
+        return roleLabel;
+    }
 
+    public void setRoleLabel(String roleLabel) {
+        this.roleLabel = roleLabel;
+    }
+    
     public String getRoleName() {
         return roleName;
     }
@@ -52,13 +62,13 @@ public class Role {
         this.roleName = roleName;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
     
     
 }

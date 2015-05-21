@@ -23,8 +23,10 @@ public class Developer extends Role {
 
     @GeneratedValue
     private int id;
+    
     @Temporal(TemporalType.DATE)
     private Date startDate;
+    
     @Temporal(TemporalType.DATE)
     private Date endDate;
 

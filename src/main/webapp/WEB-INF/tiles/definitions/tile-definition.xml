@@ -19,14 +19,70 @@ Foundation//DTD Tiles Configuration 3.0//EN"
         <put-attribute name="content" value="/WEB-INF/views/home.jsp" />
     </definition>
 
-     <definition name="employee/*" extends="baseLayout">
+    <definition name="employee/*" extends="baseLayout">
         <put-attribute name="title" value="MUMScrum" />
         <put-attribute name="heading" value="MUMScrum" />
         <put-attribute name="tagline" value="Scrum" />
         <put-attribute name="content" value="/WEB-INF/views/employee/{1}.jsp" />
     </definition>
+     <definition name="developer/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/developer/{1}.jsp" />
+    </definition>
+    <definition name="tester/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/tester/{1}.jsp" />
+    </definition>
+    <definition name="leave/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/leave/{1}.jsp" />
+    </definition>
     
-      <definition name="errorLayout" template="/WEB-INF/tiles/template/errorLayout.jsp">
+    <definition name="insurance/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/insurance/{1}.jsp" />
+    </definition>
+    
+    <definition name="productbacklog/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/productbacklog/{1}.jsp" />
+    </definition>
+    <definition name="releasebacklog/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/releasebacklog/{1}.jsp" />
+    </definition>
+    <definition name="sprint/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/sprint/{1}.jsp" />
+    </definition>
+    <definition name="userstory/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/userstory/{1}.jsp" />
+    </definition>
+    <definition name="burndownchart/*" extends="baseLayout">
+        <put-attribute name="title" value="MUMScrum" />
+        <put-attribute name="heading" value="MUMScrum" />
+        <put-attribute name="tagline" value="Scrum" />
+        <put-attribute name="content" value="/WEB-INF/views/burndownchart/{1}.jsp" />
+    </definition>
+    
+    <definition name="errorLayout" template="/WEB-INF/tiles/template/errorLayout.jsp">
         <put-attribute name="title" value="MUM Scrum" />
         <put-attribute name="heading" value="" />
         <put-attribute name="tagline" value="" />

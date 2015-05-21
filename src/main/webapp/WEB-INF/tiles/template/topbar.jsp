@@ -16,8 +16,11 @@
 
                 <ul class="nav pull-right">
                     <li class="dropdown">
-                        <a href="" role="button" class="dropdown-toggle brand" data-toggle="dropdown"> 
-                            ${username}<i class="caret"></i>
+                        <a href="" role="button" class="dropdown-toggle" data-toggle="dropdown"> 
+
+                            <sec:authentication property="principal.username" />
+
+                            <i class="caret"></i>
 
                         </a>
                         <ul class="dropdown-menu">
@@ -37,31 +40,56 @@
                 </ul>
 
                 <ul class="nav">
-                    <li class="active"><a href="${pageContext.request.contextPath}">Home</a></li>
+                    <li><a href="${pageContext.request.contextPath}">
+                            <i class="icon icon-home"></i> 
+                            Home</a></li>
 
                     <sec:authorize access="hasRole('ROLE_PRODUCT_OWNER')">
-                        <li><a href="">Product Backlog</a></li>
+                        <li><a href="${pageContext.request.contextPath}/product-backlog/list">Product Backlog</a></li>
                         </sec:authorize>
 
                     <sec:authorize access="hasAnyRole('ROLE_PRODUCT_OWNER', 'ROLE_SCRUM_MASTER')">
-                        <li><a href="">Release Backlog</a></li>
+                        <li><a href="${pageContext.request.contextPath}/release-backlog/list">Release Backlog</a></li>
                         </sec:authorize>
 
                     <sec:authorize access="hasAnyRole('ROLE_PRODUCT_OWNER', 'ROLE_SCRUM_MASTER')">
-                        <li><a href="">Sprint</a></li>
+                        <li><a href="${pageContext.request.contextPath}/sprint/list">Sprint</a></li>
                         </sec:authorize>
 
                     <sec:authorize access="hasAnyRole('ROLE_PRODUCT_OWNER', 'ROLE_SCRUM_MASTER','ROLE_DEVELOPER','ROLE_TESTER')">
-                        <li><a href="">User Story</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user-story/list">User Story</a></li>
                         </sec:authorize>
 
 
-                    <li><a href="">Burndown Chart</a></li>
+                        <sec:authorize access="hasRole('ROLE_DEVELOPER')">
+                            <li><a href="${pageContext.request.contextPath}/developer/list">Estimate Dev. Effort</a></li>
+                            <li><a href="${pageContext.request.contextPath}/developer/list">Update Dev. Effort</a></li>
+                        </sec:authorize>
+                        
+                      <sec:authorize access="hasRole('ROLE_TESTER')">
+                            <li><a href="${pageContext.request.contextPath}/tester/list">Estimate Test. Effort</a></li>
+                            <li><a href="${pageContext.request.contextPath}/tester/list">Update Test. Effort</a></li>
+                        </sec:authorize>      
+                            
+ 
                         <sec:authorize access="hasRole('ROLE_ADMIN')">
                         <li><a href="${pageContext.request.contextPath}/employee/list">Employees</a></li>
-                        <li><a href="${pageContext.request.contextPath}/employee/assignrole">Assign Role</a></li>
+                        </sec:authorize>
 
-                    </sec:authorize>
+
+
+                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <li><a href="${pageContext.request.contextPath}/employee/assignrole">Assign Role</a></li>
+                        </sec:authorize>
+                        
+                        
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <li><a href="${pageContext.request.contextPath}/leave/list">Vacation/leave</a></li>
+                        </sec:authorize>
+                        
+                         <sec:authorize access="hasRole('ROLE_ADMIN')">
+                            <li><a href="${pageContext.request.contextPath}/benefit/list">Benefit</a></li>
+                        </sec:authorize>
 
                 </ul>
             </div>

@@ -14,7 +14,7 @@
         <div class="accordion-group">
             <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse${loop.index}">
-                    ${employee.firstname} ${employee.lastname}  
+                   ${employee.id})  ${employee.firstname} ${employee.lastname}  
                 </a>
             </div>
             <div id="collapse${loop.index}" class="accordion-body collapse">
@@ -75,7 +75,7 @@
                     data: JSON.stringify(postData),
                     contentType: 'application/json',
                     success: function(data) {
-                        alert(data);
+                        alert("Successfully assigned role(s) ");
                     }
                 });
 

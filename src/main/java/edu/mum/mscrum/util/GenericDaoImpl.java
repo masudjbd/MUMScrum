@@ -7,7 +7,6 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @param <T>
@@ -19,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @SuppressWarnings("unchecked")
 @Repository
-@Transactional
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Autowired
@@ -43,7 +41,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Override
     public T create(T t) {
-        sf.getCurrentSession().persist(t);
+        sf.getCurrentSession().save(t);
         return t;
     }
 
@@ -51,7 +49,7 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
     public void delete(int id) {
 
         T t = (T) sf.getCurrentSession()
-                .get(daoType, id);
+                .load(daoType, id);
         if (null != t) {
             sf.getCurrentSession().delete(t);
         }
@@ -60,14 +58,15 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     @Override
     public T find(int id) {
-         T t = (T) sf.getCurrentSession()
+        T t = (T) sf.getCurrentSession()
                 .get(daoType, id);
-        return (T)t;// sf.getCurrentSession().get(daoType, id);
+        return t;// sf.getCurrentSession().get(daoType, id);
     }
 
     @Override
     public T update(T t) {
-        return (T) sf.getCurrentSession().merge(t);
+        sf.getCurrentSession().update(t);
+        return t;
     }
 
     @Override

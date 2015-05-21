@@ -7,11 +7,13 @@ MUM Scrum project
 Location:
 /WEB-INF/spring/webcontext/DispatcherServlet-context.xml
 from:
-<!--<prop key="hibernate.hbm2ddl.auto">create</prop>-->
+<!-- < prop key="hibernate.hbm2ddl.auto" >create</prop>-->
 to
 <prop key="hibernate.hbm2ddl.auto">create</prop>
 
- 
+<a href="https://travis-ci.org/masudjbd/MUMScrum">
+<img src="https://travis-ci.org/masudjbd/MUMScrum.svg?branch=master" />
+ </a>
 user credentials as follows:- 
 
 //HR System Admin
