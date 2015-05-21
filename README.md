@@ -11,9 +11,7 @@ from:
 to
 <prop key="hibernate.hbm2ddl.auto">create</prop>
 
-<a href="https://travis-ci.org/masudjbd/MUMScrum">
-<img src="https://travis-ci.org/masudjbd/MUMScrum.svg?branch=master" />
- </a>
+ 
 user credentials as follows:- 
 
 //HR System Admin
