@@ -27,16 +27,18 @@ public class ReleaseBacklogReposatoryImpl extends GenericDaoImpl<ReleaseBacklog>
     @Autowired
     private SessionFactory sf;
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public List<ReleaseBacklog> filterByProductBacklogId(int id) {
         String query = "from ReleaseBacklog b where b.productBacklog.id=:pbId";
-        List<ReleaseBacklog> rbList = sf.getCurrentSession().createQuery(query).setInteger("pbId", id).list();
+        List<ReleaseBacklog> rbList = (List<ReleaseBacklog>) sf.getCurrentSession().createQuery(query).setInteger("pbId", id).list();
         return rbList;
     }
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public List<ReleaseBacklog> getListById(int ownerId) {
-        List<ReleaseBacklog> rbList = sf.getCurrentSession().createQuery("from ReleaseBacklog r WHERE r.productOwner.id=" + ownerId + " ").list();
+        List<ReleaseBacklog> rbList = (List<ReleaseBacklog>) sf.getCurrentSession().createQuery("from ReleaseBacklog r WHERE r.productOwner.id=" + ownerId + " ").list();
 
         return rbList;
     }

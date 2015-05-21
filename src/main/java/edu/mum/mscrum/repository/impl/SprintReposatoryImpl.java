@@ -26,9 +26,10 @@ public class SprintReposatoryImpl extends GenericDaoImpl<Sprint> implements Spri
     @Autowired
     private SessionFactory sf;
 
-    @Override @SuppressWarnings("unchecked")
+    @Override
+    @SuppressWarnings("unchecked")
     public List<Sprint> getListById(int ownerId) {
-        List<Sprint> spList = sf.getCurrentSession().createQuery("from Sprint r WHERE r.releaseBacklog.productOwner.id=" + ownerId + " ").list();
+        List<Sprint> spList = (List<Sprint>) sf.getCurrentSession().createQuery("from Sprint r WHERE r.releaseBacklog.productOwner.id=" + ownerId + " ").list();
 
         return spList;
     }
