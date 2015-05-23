@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Welcome to MUMScrum</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+<style>
+  .container{ width:1024px; margin:0 auto;}
+</style>
+</head>
+<body>
+  
+<div class="container">
+
+<h1># MUMScrum</h1>
+<h2>MUM Scrum project</h2>
+
+<a title="GitHub MUMScrum" href="https://github.com/masudjbd/MUMScrum" >
+<img src="https://travis-ci.org/masudjbd/MUMScrum.svg?branch=master" alt="Build Pass" />
+</a>
+
+<p>@Configuration: </p>
+1. Need to install mysql and create a new database called mumscrum. <br />
+2. Another changes you have to make as follows:<br />
+Location:<br />
+/WEB-INF/spring/webcontext/DispatcherServlet-context.xml<br />
+comment the following line:
+< prop key="hibernate.hbm2ddl.auto" >create</ prop > <br />
+3. clean &amp; build.
+4. run :)
+
+<p>user credentials as follows:- </p>
+
+<b>//HR System Admin</b><br />
+user: Admin<br />
+pass: 123456<br />
+<br />
+<b>//Product Owner</b><br />
+user: powner<br />
+pass: 123456<br />
+<br />
+<b>//Scrum Master</b><br />
+user: smaster<br />
+pass: 123456<br />
+<br />
+<b>//Developer</b><br />
+user: developer<br />
+pass: 123456<br />
+<br />
+<b>//Tester</b><br />
+user: tester<br />
+pass: 123456<br />
+
+
+</div>
+
+</body>
+</html>

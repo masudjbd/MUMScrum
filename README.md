@@ -1,7 +1,7 @@
 # MUMScrum
 MUM Scrum project
 
-<a title="GitHub MUMScrum" href="https://github.com/masudjbd/MUMScrum" >
+<a title="GitHub MUMScrum" href="https://travis-ci.org/masudjbd/MUMScrum" >
 <img src="https://travis-ci.org/masudjbd/MUMScrum.svg?branch=master" alt="Build Pass" />
 </a>
 
