@@ -8,9 +8,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title>MUMScrum Login</title>
         <link rel="stylesheet"
-              href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+              href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+        
+                <link href="${pageContext.request.contextPath}/resource/css/mumscrum.css"
+              rel="stylesheet" />
     </head>
-    <body> 
+    <body class="login-body"> 
 
 
         <div class="container" style="margin-top: 200px; -moz-border-radius: 5px; border-radius: 5px; border: 1px solid #EAEAEA; background: #EEE; width: 400px;">

@@ -13,7 +13,7 @@
 <sec:authorize access="hasAnyRole( 'ROLE_SCRUM_MASTER')">   
     <a href="${pageContext.request.contextPath}/sprint/add" class="btn btn-info"><i class="icon icon-white icon-plus-sign"></i> Create Sprint </a>
 </sec:authorize>
-
+ 
 <table class="table table-striped">
     <thead>
         <tr>

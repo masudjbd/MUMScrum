@@ -35,6 +35,8 @@ public class ProductBacklogController {
     @Autowired
     private EmployeeService employeeService;
 
+    
+    
     @RequestMapping({"/", "/list"})
     public String showProductBacklogs(Model model, Principal principal) {
 
@@ -87,6 +89,9 @@ public class ProductBacklogController {
             model.addAttribute("productbacklog", productbacklog);
             return "productbacklog/edit";
         } else {
+             Employee productOwner =   employeeService.findByUsername(principal.getName()); 
+            productbacklog.setProductOwner(productOwner);
+            
             productBacklogService.update(productbacklog);
             rAttributes.addFlashAttribute("message", "Successfully updated item");
             return "redirect:/product-backlog/list";

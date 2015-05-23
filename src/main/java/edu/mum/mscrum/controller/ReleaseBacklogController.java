@@ -41,6 +41,8 @@ public class ReleaseBacklogController {
     @Autowired
     private EmployeeService employeeService;
 
+    
+    
     @RequestMapping({"/", "/list"})
     public String showReleaseBacklogs(Model model, Principal principal) {
 
@@ -93,9 +95,11 @@ public class ReleaseBacklogController {
             model.addAttribute("releasebacklog", releasebacklog);
             return "releasebacklog/edit";
         } else {
+             Employee productOwner = employeeService.findByUsername(principal.getName());
+            releasebacklog.setProductOwner(productOwner);
             ReleaseBacklogService.update(releasebacklog);
             rAttributes.addFlashAttribute("message", "Successfully updated item");
-            return "redirect:/product-backlog/list";
+            return "redirect:/release-backlog/list";
 
         }
 
