@@ -1,0 +1,24 @@
+{
+    "name": "masudjbd",
+    "type": "scrumtools",
+    "description": "SCRUM Development tools",
+    "keywords": ["scrum","development","spring mvc"],
+    "homepage": "https://github.com/masudjbd/mumscrum",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Masudur Rahman",
+            "email": "masud.java@gmail.com",
+            "homepage": "http://steadysoftware.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "java": ">=1.6.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Monolog": "src"
+        }
+    }
+}
