@@ -1,5 +1,5 @@
 {
-    "name": "masudjbd",
+    "name": "masudjbd/mumscrum",
     "type": "scrumtools",
     "description": "SCRUM Development tools",
     "keywords": ["scrum","development","spring mvc"],
