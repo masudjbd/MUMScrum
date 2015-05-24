@@ -7,31 +7,35 @@ package edu.mum.mscrum.controller;
 
 import edu.mum.mscrum.domain.ReleaseBacklog;
 import edu.mum.mscrum.service.ReleaseBacklogService;
-import java.io.IOException;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
- *
+ * this controller is to handle all ajax releted data
  * @author HabibRahman
  */
 @Controller
 @RequestMapping("/ajaxhandler")
 public class AjaxHandler {
 
+    /*
+    * Autowired Release Backlog Services
+    */
     @Autowired
     private ReleaseBacklogService releaseBacklogService;
 
+    /*
+    *   this method to get selected release backlog list
+    *   @param HttpServletRequest request
+    *   @param HttpServletResponse response
+    *   @return List<ReleaseBacklog>
+    */
     @RequestMapping(value = "/selectRB", method = RequestMethod.POST)
     public @ResponseBody
     List<ReleaseBacklog> getSelectedReleaseBacklog(HttpServletRequest request, HttpServletResponse response) {
