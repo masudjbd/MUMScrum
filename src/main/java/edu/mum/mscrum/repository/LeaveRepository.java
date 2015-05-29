@@ -11,7 +11,7 @@ import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
 /**
- *
+ * this interface is for vacation  dao.
  * @author Rhyhan
  */
 public interface LeaveRepository extends GenericDao<Employeevacation> { 

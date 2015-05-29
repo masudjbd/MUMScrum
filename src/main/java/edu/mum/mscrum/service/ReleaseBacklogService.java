@@ -5,22 +5,26 @@
  */
 package edu.mum.mscrum.service;
 
-import edu.mum.mscrum.domain.ProductBacklog;
 import edu.mum.mscrum.domain.ReleaseBacklog;
 import java.util.List;
 
 /**
+ * this interface is for release backlog service
  *
  * @author HabibRahman
  */
 public interface ReleaseBacklogService {
+
     void createReleaseBacklog(ReleaseBacklog releaseBacklog);
+
     List<ReleaseBacklog> getAllReleaseBacklog();
+
     ReleaseBacklog findReleaseBacklog(int id);
+
     void delete(int id);
-    
-    
+
     List<ReleaseBacklog> filterByProductBacklogId(int id);
+
     List<ReleaseBacklog> getAllReleaseBacklogByOwner(int ownerId);
 
     public ReleaseBacklog update(ReleaseBacklog releasebacklog);

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * This controller is to sprint - add, edit, view, delete.
  *
  * @author HabibRahman
  */
@@ -34,36 +35,62 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/sprint")
 public class SprintController {
 
+    /**
+     * Autowired sprint services to get all sprint operations.
+     */
     @Autowired
     private SprintService springService;
 
+    /**
+     * Autowired release backlog to get all release backlog operations.
+     */
     @Autowired
     private ReleaseBacklogService releaseBacklogService;
+
+    /**
+     * Autowired employee service to get all employee operation.
+     */
     @Autowired
     private EmployeeService employeeService;
 
+    /**
+     * This method is to display sprint list.
+     *
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping({"/", "/list"})
     public String showSprints(Model model, Principal principal) {
-
-        model.addAttribute("username", principal.getName());
-
         Employee productOwner = employeeService.findByUsername(principal.getName());
         model.addAttribute("sprintList", springService.getAllSprintByOwner(productOwner.getId()));
-
-        //model.addAttribute("sprintList", springService.getList());
         return "sprint/list";
     }
 
+    /**
+     * This method is to display sprint add page.
+     *
+     * @param sprint
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String createSprint(@ModelAttribute("sprint") Sprint sprint) {
-
         return "sprint/add";
     }
 
+    /**
+     * This method is to validate sprint data and bind and persist into
+     * database.
+     *
+     * @param sprint
+     * @param br
+     * @param ra
+     * @param principal
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String createProductBacklog(@ModelAttribute("newSprint") @Valid Sprint sprint, BindingResult br, RedirectAttributes ra, Principal principal, Model model) {
-
-        model.addAttribute("username", principal.getName());
 
         if (br.hasErrors()) {
             return "sprint/add";
@@ -76,25 +103,41 @@ public class SprintController {
         }
     }
 
+    /**
+     * This method is to populate release backlog data.
+     *
+     * @param principal
+     * @return
+     */
     @ModelAttribute("releasebacklogs")
     public List<ReleaseBacklog> populateReleaseBacklog(Principal principal) {
-
         Employee productOwner = employeeService.findByUsername(principal.getName());
         return releaseBacklogService.getAllReleaseBacklogByOwner(productOwner.getId());
-
-        //return releaseBacklogService.getAllReleaseBacklog();
     }
 
+    /**
+     * This method is to display sprint edit page
+     * @param id
+     * @param model
+     * @param principal
+     * @return 
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String editDetails(@PathVariable int id, Model model, Principal principal) {
-        model.addAttribute("username", principal.getName());
         model.addAttribute("sprint", springService.find(id));
-        return "/sprint/edit";
+        return "sprint/edit";
     }
 
+    /**
+     * This method is to remove sprint item. 
+     * @param id
+     * @param model
+     * @param rAttributes
+     * @param principal
+     * @return 
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteDetails(@PathVariable int id, Model model, RedirectAttributes rAttributes, Principal principal) {
-        model.addAttribute("username", principal.getName());
         springService.delete(id);
         rAttributes.addFlashAttribute("message", "Successfully removed item");
         return "redirect:/sprint/";

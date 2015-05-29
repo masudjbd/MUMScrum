@@ -5,23 +5,29 @@
  */
 package edu.mum.mscrum.service;
 
-
 import edu.mum.mscrum.domain.UpdateDevelopment;
 import edu.mum.mscrum.domain.UpdateTesting;
 import edu.mum.mscrum.domain.UserStory;
 import java.util.List;
 
 /**
+ * this interface is for user story service.
  *
  * @author HabibRahman
  */
 public interface UserStoryService {
+
     void create(UserStory userstory);
+
     List<UserStory> getList();
+
     UserStory find(int id);
+
     void delete(int id);
+
     UserStory update(UserStory us);
- 
+
     public List<UpdateDevelopment> getUpdateDevelopments(int id);
+
     public List<UpdateTesting> getUpdateTestings(int id);
 }

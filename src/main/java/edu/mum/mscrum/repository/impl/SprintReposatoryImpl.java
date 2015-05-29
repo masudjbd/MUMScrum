@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of sprint dao
  *
  * @author HabibRahman
  */
@@ -23,9 +24,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.MANDATORY)
 public class SprintReposatoryImpl extends GenericDaoImpl<Sprint> implements SprintReposatory {
 
+    /**
+     * Autowired session factory for persistence.
+     */
     @Autowired
     private SessionFactory sf;
 
+    /**
+     * this method is to get sprint list by product owner id.
+     * @param ownerId
+     * @return 
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<Sprint> getListById(int ownerId) {

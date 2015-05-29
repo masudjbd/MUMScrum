@@ -10,11 +10,9 @@ import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
 /**
- *
+ * this interface is for product backlog  dao.
  * @author HabibRahman
  */
 public interface ProductBacklogReposatory extends GenericDao<ProductBacklog>{
-   
     List<ProductBacklog> getListById(int ownerId);
-        
 }

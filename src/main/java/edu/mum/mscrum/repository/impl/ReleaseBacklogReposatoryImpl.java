@@ -5,7 +5,6 @@
  */
 package edu.mum.mscrum.repository.impl;
 
-import edu.mum.mscrum.domain.ProductBacklog;
 import edu.mum.mscrum.domain.ReleaseBacklog;
 import edu.mum.mscrum.repository.ReleaseBacklogReposatory;
 import edu.mum.mscrum.util.GenericDaoImpl;
@@ -17,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of release backlog dao
  *
  * @author HabibRahman
  */
@@ -24,9 +24,17 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.MANDATORY)
 public class ReleaseBacklogReposatoryImpl extends GenericDaoImpl<ReleaseBacklog> implements ReleaseBacklogReposatory {
 
+    /**
+     * Autowired session factory for persistence.
+     */
     @Autowired
     private SessionFactory sf;
 
+    /**
+     * this method is to get release backlogs by product backlog id.
+     * @param id
+     * @return 
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<ReleaseBacklog> filterByProductBacklogId(int id) {
@@ -34,6 +42,11 @@ public class ReleaseBacklogReposatoryImpl extends GenericDaoImpl<ReleaseBacklog>
         return (List<ReleaseBacklog>) sf.getCurrentSession().createQuery(query).setInteger("pbId", id).list();
     }
 
+    /**
+     * this method is to get release backlog list by owner id. 
+     * @param ownerId
+     * @return 
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<ReleaseBacklog> getListById(int ownerId) {

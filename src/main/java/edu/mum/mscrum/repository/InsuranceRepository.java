@@ -11,11 +11,9 @@ import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
 /**
- *
+ * this interface is for insurance  dao.
  * @author Rhyhan
  */
 public interface InsuranceRepository extends GenericDao<Insurance> { 
-
     public List<InsuranceType> getTypeList();
-    
 }

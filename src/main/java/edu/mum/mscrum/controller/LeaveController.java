@@ -24,22 +24,45 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- *
+ * This controller is to display, add , update and remove employee leave/vacation
  * @author Rhyhan
  */
 @Controller
 @RequestMapping("/leave")
 public class LeaveController {
 
+    /**
+     * Autowired leave service to get all leave/vacation related operation.
+     */
     @Autowired
     private LeaveService leaveService;
+    
+    /**
+     * Autowired employee service to get all employee related operation.
+     */
     @Autowired
     EmployeeService employeeService;
 
+    /**
+     * This method is to display employee vacation add page.
+     * @param empvac
+     * @return 
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addleave(@ModelAttribute("empvac") Employeevacation empvac) {  
         return "leave/add";
     }
+    
+    /**
+     * This method is to bind employee vacation data and persist into database and 
+     * based on success redirect to list page.
+     * @param empvac
+     * @param br
+     * @param ra
+     * @param principal
+     * @param model
+     * @return 
+     */
      @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProcess(@Valid Employeevacation empvac, BindingResult br, RedirectAttributes ra, Principal principal, Model model) {
        model.addAttribute("username", principal.getName());
@@ -52,19 +75,40 @@ public class LeaveController {
         }
     }
     
+    /**
+     * This method is to populate employee list
+     * @return 
+     */
     @ModelAttribute("employees")
     List<Employee> populateAllEmployee(){
         return employeeService.getEmployees();
     }
     
+    /**
+     * This method is to get leave types.
+     * @return 
+     */
     @ModelAttribute("leavetypes")
     List<LeaveType> populateAllLeave(){
         return leaveService.getAllList();
     }
+    
+    /**
+     * This method is to display leave type page
+     * @param ltype
+     * @return 
+     */
     @RequestMapping(value = "/leavetype", method = RequestMethod.GET)
     public String addleavetype(@ModelAttribute("ltype") LeaveType ltype) {        
         return "leave/leavetype";
     }
+    
+    /**
+     * This method is to display list of vacation with employee.
+     * @param model
+     * @param principal
+     * @return 
+     */
      @RequestMapping({"/", "/list"})
     public String getList(Model model, Principal principal) {
         model.addAttribute("username", principal.getName());
@@ -73,6 +117,14 @@ public class LeaveController {
         return "leave/list";
     }    
     
+    /**
+     * This method is to remove employee vacation.
+     * @param leaveid
+     * @param model
+     * @param rAttributes
+     * @param principal
+     * @return 
+     */
      @RequestMapping(value = "/delete/{leaveid}", method = RequestMethod.GET)
     public String deleteDetails(@PathVariable int leaveid, Model model, RedirectAttributes rAttributes, Principal principal) {
         model.addAttribute("username", principal.getName());
@@ -81,44 +133,18 @@ public class LeaveController {
         return "redirect:/leave/";
     }
     
+    /**
+     * This method is to display each vacation details.
+     * @param leaveid
+     * @param model
+     * @param principal
+     * @return 
+     */
     @RequestMapping(value = "/details/{leaveid}", method = RequestMethod.GET)
     public String details(@PathVariable int leaveid, Model model, Principal principal) {
         model.addAttribute("username", principal.getName());
         model.addAttribute("empvac", leaveService.find(leaveid));
         return "leave/details";
 
-   }
-//   @RequestMapping(value = "/edit/{leaveid}", method = RequestMethod.GET)
-//    public String getDetails(@PathVariable int leaveid, Model model, Principal principal) {
-//        model.addAttribute("username", principal.getName());
-//        model.addAttribute("empvac", leaveService.find(leaveid));
-////        model.addAttribute("employees", employeeService.getEmployees());
-//        return "leave/edit";
-//
-//    }
-////    
-////     @RequestMapping(value = "/edit/{leaveid}", method = RequestMethod.POST)
-////    public String updateDetails(Model model, @Valid Employeevacation empvac, @PathVariable int leaveid,
-////            BindingResult br, RedirectAttributes rAttributes, Principal principal) {
-////        model.addAttribute("username", principal.getName());
-////
-////        if (br.hasErrors()) {
-////            model.addAttribute("empvac", empvac);
-////            return "leave/edit";
-////        } else {
-////            leaveService.update(empvac);
-////            rAttributes.addFlashAttribute("message", "Successfully updated item");
-////            return "redirect:/leave/list";
-////
-////        }
-////    }
-////    
-////      @InitBinder
-////    protected void initBinder(WebDataBinder binder) {
-////        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-////        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
-////    }
-//
-//   
-
+   } 
 }

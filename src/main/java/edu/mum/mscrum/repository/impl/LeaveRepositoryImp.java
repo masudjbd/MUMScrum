@@ -17,20 +17,28 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of leave dao
  *
  * @author Rhyhan
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
-public class LeaveRepositoryImp extends GenericDaoImpl<Employeevacation> implements LeaveRepository{
+public class LeaveRepositoryImp extends GenericDaoImpl<Employeevacation> implements LeaveRepository {
 
+    /**
+     * Autowired session factory for persistence.
+     */
     @Autowired
     private SessionFactory sf;
 
-     
-    @Override @SuppressWarnings("unchecked")
+    /**
+     * this method is to get leave types.
+     * @return 
+     */
+    @Override
+    @SuppressWarnings("unchecked")
     public List<LeaveType> getTypeList() {
-         return this.getSf().getCurrentSession().createQuery("from LeaveType").list();
+        return this.getSf().getCurrentSession().createQuery("from LeaveType").list();
     }
-    
+
 }

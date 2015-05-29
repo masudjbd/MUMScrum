@@ -38,6 +38,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
+ * this controller is to create, display list of employee, update and remove
+ * employee
  *
  * @author Masudur Rahman <masud.java@gmail.com>
  */
@@ -45,38 +47,70 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/employee")
 public class EmployeeController {
 
+    /**
+     * Autowired employee services to get all operation.
+     */
     @Autowired
     private EmployeeService employeeService;
 
-    
-    
+    /**
+     * This method is to bind data format / field level access modifier
+     *
+     * @param binder
+     */
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
 
+    /**
+     * This method is to display all employee list view.
+     *
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping({"/", "/list"})
     public String getList(Model model, Principal principal) {
-       model.addAttribute("username", principal.getName());
-       model.addAttribute("employees", employeeService.getEmployees());
+        model.addAttribute("username", principal.getName());
+        model.addAttribute("employees", employeeService.getEmployees());
 
         return "employee/list";
     }
 
+    /**
+     * This method is to display employee create page.
+     *
+     * @param employee
+     * @param principal
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addPage(@ModelAttribute("employee") Employee employee, Principal principal, Model model) {
         return "employee/add";
     }
 
+    /**
+     * This method is to process employee data, it will bind employee data from
+     * form and bind into employee object and persist into database
+     *
+     * @param employee
+     * @param br
+     * @param ra
+     * @param principal
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String addProcess(@Valid Employee employee, BindingResult br, RedirectAttributes ra, Principal principal, Model model) {
 
         //password hashing by bcrypt
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		String hashedPassword = passwordEncoder.encode(employee.getPassword());
-                employee.setPassword(hashedPassword);
-        
+        String hashedPassword = passwordEncoder.encode(employee.getPassword());
+        employee.setPassword(hashedPassword);
+
         if (br.hasErrors()) {
             return "employee/add";
         } else {
@@ -87,6 +121,14 @@ public class EmployeeController {
         }
     }
 
+    /**
+     * This method is to display single employee details view.
+     *
+     * @param id
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/details/{id}", method = RequestMethod.GET)
     public String details(@PathVariable int id, Model model, Principal principal) {
         model.addAttribute("employee", employeeService.find(id));
@@ -94,6 +136,14 @@ public class EmployeeController {
 
     }
 
+    /**
+     * This method is to display empoyee update page.
+     *
+     * @param id
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public String getDetails(@PathVariable int id, Model model, Principal principal) {
         model.addAttribute("employee", employeeService.find(id));
@@ -101,6 +151,18 @@ public class EmployeeController {
 
     }
 
+    /**
+     * This method is to bind empoyee updated data bind into empoyee object and
+     * persist/merge into database.
+     *
+     * @param model
+     * @param employee
+     * @param id
+     * @param br
+     * @param rAttributes
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.POST)
     public String updateDetails(Model model, @Valid Employee employee, @PathVariable int id,
             BindingResult br, RedirectAttributes rAttributes, Principal principal) {
@@ -117,6 +179,15 @@ public class EmployeeController {
 
     }
 
+    /**
+     * This method is to remove empoyee
+     *
+     * @param id
+     * @param model
+     * @param rAttributes
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
     public String deleteDetails(@PathVariable int id, Model model, RedirectAttributes rAttributes, Principal principal) {
         model.addAttribute("username", principal.getName());
@@ -125,7 +196,13 @@ public class EmployeeController {
         return "redirect:/employee/";
     }
 
-
+    /**
+     * This method is to display employee assign role
+     *
+     * @param model
+     * @param principal
+     * @return
+     */
     @RequestMapping(value = "/assignrole", method = RequestMethod.GET)
     public String getAssignRole(Model model, Principal principal) {
         model.addAttribute("employees", employeeService.getEmployees());
@@ -136,13 +213,20 @@ public class EmployeeController {
 
     }
 
+    /**
+     * This method is to assign roles to employee either single or multiple
+     * roles.
+     *
+     * @param json
+     * @return
+     * @throws IOException
+     */
     @RequestMapping(value = "/assignrole", method = RequestMethod.POST)
     @ResponseBody
     public String updateAssignRole(@RequestBody String json) throws IOException {
         int empId = 0;
         List<Role> rL = new ArrayList<Role>();
         String res = json.toString();
-        
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode actualObj = mapper.readTree(res);
@@ -153,10 +237,9 @@ public class EmployeeController {
         String lp = "";
         JsonNode arrNode = actualObj.get("roles");
 
-        
-        
         employeeService.assignRole(empId, arrNode);
+
+        return "{ message: 1 }";
         
-        return lp + "working " + res + " >> " + actualObj.get("id") + " " + empl.getFirstname();
     }
 }

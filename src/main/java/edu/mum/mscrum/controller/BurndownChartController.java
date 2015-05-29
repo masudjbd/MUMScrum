@@ -22,18 +22,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping("/burndown-chart")
 public class BurndownChartController {
 
-    /*
+    /**
     * Autowired Employee Service layer
     */
     @Autowired
     private EmployeeService employeeService;
 
-    /*
-    *   this method is to display burndown bar chart
-    *   @param Model model
-    *   @param Principal principal
-    *   @return String view file name "burndownchart/barchart"
-    */
+     /**
+      * this method is to display burndown chart
+      * @param model
+      * @param principal
+      * @return 
+      */
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String viewChart(Model model, Principal principal) {
         Employee empl =   employeeService.findByUsername(principal.getName());

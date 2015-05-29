@@ -9,15 +9,22 @@ import edu.mum.mscrum.domain.ProductBacklog;
 import java.util.List;
 
 /**
+ * this interface is for product backlog service
  *
  * @author HabibRahman
  */
 public interface ProductBacklogService {
+
     void createProductBacklog(ProductBacklog productbacklog);
+
     List<ProductBacklog> getAllProductBacklog();
+
     ProductBacklog findProductBacklog(int id);
+
     void delete(int id);
+
     ProductBacklog update(ProductBacklog pb);
+
     // Habib
     List<ProductBacklog> getAllProductBacklogByOwner(int ownerId);
 }

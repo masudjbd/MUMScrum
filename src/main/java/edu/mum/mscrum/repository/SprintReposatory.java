@@ -5,17 +5,16 @@
  */
 package edu.mum.mscrum.repository;
 
-import edu.mum.mscrum.domain.ReleaseBacklog;
 import edu.mum.mscrum.domain.Sprint;
 import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
 /**
+ * this interface is for sprint dao
  *
  * @author HabibRahman
  */
-public interface SprintReposatory extends GenericDao<Sprint>{
-    
-//habib
+public interface SprintReposatory extends GenericDao<Sprint> {
+
     List<Sprint> getListById(int ownerId);
 }

@@ -24,18 +24,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/ajaxhandler")
 public class AjaxHandler {
 
-    /*
+    /**
     * Autowired Release Backlog Services
     */
     @Autowired
     private ReleaseBacklogService releaseBacklogService;
 
-    /*
-    *   this method to get selected release backlog list
-    *   @param HttpServletRequest request
-    *   @param HttpServletResponse response
-    *   @return List<ReleaseBacklog>
-    */
+ 
+    /**
+     * this method to get selected release backlog list
+     * @param request
+     * @param response
+     * @return 
+     */
     @RequestMapping(value = "/selectRB", method = RequestMethod.POST)
     public @ResponseBody
     List<ReleaseBacklog> getSelectedReleaseBacklog(HttpServletRequest request, HttpServletResponse response) {

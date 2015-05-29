@@ -11,7 +11,7 @@ import edu.mum.mscrum.domain.Tester;
 import java.util.List;
 
 /**
- *
+ * this interface is to get all hr subsystems information.
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 public interface IHRSubSystem {

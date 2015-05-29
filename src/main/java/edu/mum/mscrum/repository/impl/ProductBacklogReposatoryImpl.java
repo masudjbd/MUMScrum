@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of product backlog dao
  *
  * @author HabibRahman
  */
@@ -24,13 +25,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.MANDATORY)
 public class ProductBacklogReposatoryImpl extends GenericDaoImpl<ProductBacklog> implements ProductBacklogReposatory {
 
+    /**
+     * Autowired session factory for persistence.
+     */
     @Autowired
     private SessionFactory sf;
 
+    /**
+     * this method is to get product backlog list by owner id. 
+     * @param ownerId
+     * @return 
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<ProductBacklog> getListById(int ownerId) {
         return (List<ProductBacklog>) sf.getCurrentSession().createQuery("from ProductBacklog p WHERE p.productOwner.id=" + ownerId + " ").list();
-     }
+    }
 
 }

@@ -26,28 +26,52 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- *
+ * this controller is for developer's operation, like estimate development 
+ * time for user stories, update development effort, etc
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 @Controller
 @RequestMapping("/developer")
 public class DeveloperController {
 
+    /**
+    * Autowired User Story service to get all user story operations.
+    */
     @Autowired
     private UserStoryService userStoryService;
 
+     /**
+     * This method is to display list of user story.
+     * @param userStory
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getList(@ModelAttribute("userStory") UserStory userStory, Model model) {
         model.addAttribute("userstories", userStoryService.getList());
         return "developer/list";
     }
 
+    /**
+     * This method is to estimate user story development time.
+     * @param userStory
+     * @param model
+     * @param id
+     * @return String developer/estimateeffort
+     */
     @RequestMapping(value = "/estimate-development-effort/{id}", method = RequestMethod.GET)
     public String estimateDevEffort(@ModelAttribute("userStory") UserStory userStory, Model model, @PathVariable int id) {
         model.addAttribute("userStory", userStoryService.find(id));
         return "developer/estimateeffort";
     }
 
+    /**
+     * This method is to process estimate development effort/time. 
+     * @param userStory
+     * @param model
+     * @param ra
+     * @return 
+     */
     @RequestMapping(value = "/estimate-development-effort/{id}", method = RequestMethod.POST)
     public String estimateDevEffortSave(@ModelAttribute("userStory") UserStory userStory, Model model, RedirectAttributes ra) {
         model.addAttribute("userstories", userStoryService.getList());
@@ -61,16 +85,29 @@ public class DeveloperController {
         return "redirect:/developer/list";
     }
 
+    /** 
+     * This method is to display update development effort
+     * @param userStory
+     * @param model
+     * @param id
+     * @return 
+     */
     @RequestMapping(value = "/update-development-effort/{id}", method = RequestMethod.GET)
     public String updateDevEffort(@ModelAttribute("userStory") UserStory userStory, Model model, @PathVariable int id) {
         model.addAttribute("userStory", userStoryService.find(id));
 
-        //usId
+        //Update Developments List get by User Story Id
         model.addAttribute("updateDevelopments", userStoryService.getUpdateDevelopments(id));
 
         return "developer/updateeffort";
     }
 
+    /**
+     * This method is to update development effort for developer
+     * @param json
+     * @return
+     * @throws IOException 
+     */
     @RequestMapping(value = "/update-development-effort/{id}", method = RequestMethod.POST)
     @ResponseBody
     public String updateDevEffortSave(@RequestBody String json) throws IOException {

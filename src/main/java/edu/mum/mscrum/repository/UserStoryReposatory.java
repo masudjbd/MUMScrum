@@ -12,12 +12,14 @@ import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
 /**
+ * this interface is for user story dao
  *
  * @author HabibRahman
  */
-public interface UserStoryReposatory extends GenericDao<UserStory>{
+public interface UserStoryReposatory extends GenericDao<UserStory> {
 
     public List<UpdateDevelopment> getUpdateDevelopmentByUsId(int usId);
+
     public List<UpdateTesting> getUpdateTestingByUsId(int usId);
-    
+
 }

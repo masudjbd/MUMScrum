@@ -5,18 +5,15 @@
  */
 package edu.mum.mscrum.repository;
 
-import edu.mum.mscrum.domain.ProductBacklog;
 import edu.mum.mscrum.domain.ReleaseBacklog;
 import edu.mum.mscrum.util.GenericDao;
 import java.util.List;
 
 /**
- *
+ * this interface is for release backlog dao.
  * @author HabibRahman
  */
 public interface ReleaseBacklogReposatory extends GenericDao<ReleaseBacklog>{
-    
     List<ReleaseBacklog> filterByProductBacklogId(int id);
-    
     List<ReleaseBacklog> getListById(int ownerId);
 }

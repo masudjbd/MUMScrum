@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- *
+ * this class is plements of role dao.
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 @Repository

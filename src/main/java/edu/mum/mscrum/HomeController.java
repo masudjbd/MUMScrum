@@ -8,8 +8,6 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +21,12 @@ public class HomeController {
 
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
-    /**
+     /**
      * Simply selects the home view to render by returning its name.
+     * @param locale
+     * @param model
+     * @param principal
+     * @return 
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String home(Locale locale, Model model, Principal principal) {
@@ -46,6 +48,12 @@ public class HomeController {
         return "home";
     }
 
+    /**
+     * This method is to display access denied page once get caught by security
+     * @param model
+     * @param principal
+     * @return 
+     */
     @RequestMapping(value = "/accessdenied", method = RequestMethod.GET)
     public String accessdeniedPage(Model model, Principal principal) {
         return "accessdenied";

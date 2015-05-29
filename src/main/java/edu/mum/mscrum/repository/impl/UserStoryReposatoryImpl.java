@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of user story dao.
  *
  * @author HabibRahman
  */
@@ -25,15 +26,30 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.MANDATORY)
 public class UserStoryReposatoryImpl extends GenericDaoImpl<UserStory> implements UserStoryReposatory {
 
+    /**
+     * Autowired session factory for persistence.
+     */
     @Autowired
     private SessionFactory sf;
 
+    /**
+     * this method is to get update development list by user story id.
+     *
+     * @param usId
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<UpdateDevelopment> getUpdateDevelopmentByUsId(int usId) {
         return (List<UpdateDevelopment>) sf.getCurrentSession().createQuery("from UpdateDevelopment WHERE userstory_id='" + usId + "' ").list();
     }
 
+    /**
+     * this method is to get update testing list by user story id.
+     *
+     * @param usId
+     * @return
+     */
     @SuppressWarnings("unchecked")
     @Override
     public List<UpdateTesting> getUpdateTestingByUsId(int usId) {

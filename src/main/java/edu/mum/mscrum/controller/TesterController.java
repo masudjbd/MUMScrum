@@ -27,28 +27,52 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- *
+ * This controller is for tester - estimate testing effort, update their testing effort.
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 @Controller
 @RequestMapping("/tester")
 public class TesterController {
 
+    /**
+     * Autowired user story service to get all operations.
+     */
     @Autowired
     private UserStoryService userStoryService;
 
+    /**
+     * This method is to display list of user stories and based on this tester will
+     * estimate their testing time.
+     * @param userStory
+     * @param model
+     * @return 
+     */
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String getList(@ModelAttribute("userStory") UserStory userStory, Model model) {
         model.addAttribute("userstories", userStoryService.getList());
         return "tester/list";
     }
 
+    /**
+     * This method is to display estimate testing effort for user story
+     * @param userStory
+     * @param model
+     * @param id
+     * @return 
+     */
     @RequestMapping(value = "/estimate-testing-effort/{id}", method = RequestMethod.GET)
     public String estimateDevEffort(@ModelAttribute("userStory") UserStory userStory, Model model, @PathVariable int id) {
         model.addAttribute("userStory", userStoryService.find(id));
         return "tester/estimateeffort";
     }
 
+    /**
+     * this method is to bind estimate testing effort time and persist into databse.
+     * @param userStory
+     * @param model
+     * @param ra
+     * @return 
+     */
     @RequestMapping(value = "/estimate-testing-effort/{id}", method = RequestMethod.POST)
     public String estimateDevEffortSave(@ModelAttribute("userStory") UserStory userStory, Model model, RedirectAttributes ra) {
         model.addAttribute("userstories", userStoryService.getList());
@@ -62,16 +86,28 @@ public class TesterController {
         return "redirect:/tester/list";
     }
 
+    /**
+     * this method is to display user story to update testing effort.
+     * @param userStory
+     * @param model
+     * @param id
+     * @return 
+     */
     @RequestMapping(value = "/update-testing-effort/{id}", method = RequestMethod.GET)
     public String updateDevEffort(@ModelAttribute("userStory") UserStory userStory, Model model, @PathVariable int id) {
         model.addAttribute("userStory", userStoryService.find(id));
 
-        //usId
         model.addAttribute("updateTestings", userStoryService.getUpdateTestings(id));
 
         return "tester/updateeffort";
     }
 
+    /**
+     * This method is to bind update testing effort data and persist into database.
+     * @param json
+     * @return
+     * @throws IOException 
+     */
     @RequestMapping(value = "/update-testing-effort/{id}", method = RequestMethod.POST)
     @ResponseBody
     public String updateDevEffortSave(@RequestBody String json) throws IOException {

@@ -10,13 +10,19 @@ import edu.mum.mscrum.domain.InsuranceType;
 import java.util.List;
 
 /**
+ * this interface is for insurance service
  *
  * @author Rhyhan
  */
 public interface InsuranceService {
+
     public List<InsuranceType> getAllList();
-public void create(Insurance insurance);
-public List<Insurance> getInsurance();
-public Insurance find(int inId);
-public void delete(int inId);
+
+    public void create(Insurance insurance);
+
+    public List<Insurance> getInsurance();
+
+    public Insurance find(int inId);
+
+    public void delete(int inId);
 }

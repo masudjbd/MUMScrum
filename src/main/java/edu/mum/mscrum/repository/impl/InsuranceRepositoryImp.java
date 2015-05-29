@@ -17,19 +17,28 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of insurance dao along with generic dao.
  *
  * @author Rhyhan
  */
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
-public class InsuranceRepositoryImp extends GenericDaoImpl<Insurance> implements InsuranceRepository{
+public class InsuranceRepositoryImp extends GenericDaoImpl<Insurance> implements InsuranceRepository {
 
-     @Autowired
+    /**
+     * Autowired session factory for persistence.
+     */
+    @Autowired
     private SessionFactory sf;
-     
-    @Override @SuppressWarnings("unchecked")
+
+    /**
+     * this method is to get insurance types.
+     * @return 
+     */
+    @Override
+    @SuppressWarnings("unchecked")
     public List<InsuranceType> getTypeList() {
-       return this.getSf().getCurrentSession().createQuery("from InsuranceType").list();
+        return this.getSf().getCurrentSession().createQuery("from InsuranceType").list();
     }
-    
+
 }

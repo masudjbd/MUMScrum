@@ -20,31 +20,61 @@ import org.springframework.stereotype.Repository;
 @Repository
 public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
+    /**
+     * Autowired session factor for persistence.
+     */
     @Autowired
     private SessionFactory sf;
 
+    /**
+     * this method to get session factory
+     *
+     * @return
+     */
     public SessionFactory getSf() {
         return sf;
     }
 
+    /**
+     * this method is to set session factory
+     *
+     * @param sf
+     */
     public void setSf(SessionFactory sf) {
         this.sf = sf;
     }
 
+    /**
+     * cast data type assign
+     */
     protected Class<? extends T> daoType;
 
+    /**
+     * this constructor method is to bind data type
+     */
     public GenericDaoImpl() {
         Type t = getClass().getGenericSuperclass();
         ParameterizedType pt = (ParameterizedType) t;
         daoType = (Class) pt.getActualTypeArguments()[0];
     }
 
+    /**
+     * this method is to persist/save object into database.
+     *
+     * @param t
+     * @return
+     */
     @Override
     public T create(T t) {
         sf.getCurrentSession().save(t);
         return t;
     }
 
+    /**
+     * this method is to remove object by id.
+     *
+     * @param id
+     */
     @Override
     public void delete(int id) {
 
@@ -56,19 +86,36 @@ public abstract class GenericDaoImpl<T> implements GenericDao<T> {
 
     }
 
+    /**
+     * this method is to find cast object by id
+     *
+     * @param id
+     * @return
+     */
     @Override
     public T find(int id) {
         T t = (T) sf.getCurrentSession()
                 .get(daoType, id);
-        return t;// sf.getCurrentSession().get(daoType, id);
+        return t;
     }
 
+    /**
+     * this method is to update cast object
+     *
+     * @param t
+     * @return
+     */
     @Override
     public T update(T t) {
         sf.getCurrentSession().update(t);
         return t;
     }
 
+    /**
+     * this method is to get list of cast object.
+     *
+     * @return
+     */
     @Override
     public List<T> getList() {
         return sf.getCurrentSession().createCriteria(daoType).list();

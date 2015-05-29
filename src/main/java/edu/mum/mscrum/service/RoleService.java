@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package edu.mum.mscrum.service;
 
 import edu.mum.mscrum.domain.Role;
 import java.util.List;
 
 /**
+ * this interface is for role service
  *
  * @author Masudur Rahman <masud.java@gmail.com>
  */
 public interface RoleService {
-        public List<Role> getList();
+
+    public List<Role> getList();
 
 }

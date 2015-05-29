@@ -5,20 +5,24 @@
  */
 package edu.mum.mscrum.service;
 
-import edu.mum.mscrum.domain.ReleaseBacklog;
 import edu.mum.mscrum.domain.Sprint;
 import java.util.List;
 
 /**
+ * this inteface is for sprint service.
  *
  * @author HabibRahman
  */
 public interface SprintService {
+
     void create(Sprint sprint);
+
     List<Sprint> getList();
+
     Sprint find(int id);
+
     void delete(int id);
-    
+
     //habib
     List<Sprint> getAllSprintByOwner(int ownerId);
 }

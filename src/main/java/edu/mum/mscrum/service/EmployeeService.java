@@ -12,6 +12,7 @@ import java.util.List;
 import org.codehaus.jackson.JsonNode;
 
 /**
+ * this interface is for employee servce
  *
  * @author Masudur Rahman <masud.java@gmail.com>
  */
@@ -32,6 +33,7 @@ public interface EmployeeService {
     public void assignRole(int empId, JsonNode arrNode);
 
     public List<Role> getRoles();
+
     public Employee findByUsername(String str);
 
     public Object findAllScrumMasters();

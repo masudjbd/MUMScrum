@@ -10,16 +10,22 @@ import edu.mum.mscrum.domain.LeaveType;
 import java.util.List;
 
 /**
+ * this interface is for leave service.
  *
  * @author Rhyhan
  */
 public interface LeaveService {
-    
-public List<LeaveType> getAllList();
-public void create(Employeevacation empvac);
-public List<Employeevacation> getVacation();
-public Employeevacation find(int leaveid);
-public Employeevacation update(Employeevacation empvac);
-public void delete(int leaveid);
-    
+
+    public List<LeaveType> getAllList();
+
+    public void create(Employeevacation empvac);
+
+    public List<Employeevacation> getVacation();
+
+    public Employeevacation find(int leaveid);
+
+    public Employeevacation update(Employeevacation empvac);
+
+    public void delete(int leaveid);
+
 }

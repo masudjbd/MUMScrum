@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of product backlog service
  *
  * @author HabibRahman
  */
@@ -22,35 +23,70 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class ProductBacklogServiceImpl implements ProductBacklogService {
 
+    /**
+     * Autowired to access dao layer.
+     */
     @Autowired
     private ProductBacklogReposatory productBacklogReposatory;
 
+    /**
+     * this method is to create product backlog
+     *
+     * @param productbacklog
+     */
     @Override
     public void createProductBacklog(ProductBacklog productbacklog) {
         productBacklogReposatory.create(productbacklog);
     }
 
+    /**
+     * this method is to get product backlog list.
+     *
+     * @return
+     */
     @Override
     public List<ProductBacklog> getAllProductBacklog() {
         return productBacklogReposatory.getList();
     }
 
+    /**
+     * this method is to find product baclog by id.
+     *
+     * @param id
+     * @return
+     */
     @Override
     public ProductBacklog findProductBacklog(int id) {
         return productBacklogReposatory.find(id);
     }
 
+    /**
+     * this method is delete product backlog by id.
+     *
+     * @param id
+     */
     @Override
     public void delete(int id) {
         productBacklogReposatory.delete(id);
     }
 
+    /**
+     * this method is to get productbacklog list by product owner id.
+     *
+     * @param ownerId
+     * @return
+     */
     @Override
     public List<ProductBacklog> getAllProductBacklogByOwner(int ownerId) {
         return productBacklogReposatory.getListById(ownerId);
-        //return null;
     }
 
+    /**
+     * this method is to update product backlog
+     *
+     * @param pb
+     * @return
+     */
     @Override
     public ProductBacklog update(ProductBacklog pb) {
         productBacklogReposatory.update(pb);

@@ -16,35 +16,67 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
+ * this class is implements of insurance service.
  *
  * @author Rhyhan
  */
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
-public class InsuranceServiceImp implements InsuranceService{
-    
+public class InsuranceServiceImp implements InsuranceService {
+
+    /**
+     * Autowired to access dao layer.
+     */
     @Autowired
     private InsuranceRepository insurancerepository;
 
+    /**
+     * this method is get insurance type list
+     *
+     * @return
+     */
     @Override
     public List<InsuranceType> getAllList() {
-        
+
         return insurancerepository.getTypeList();
     }
 
+    /**
+     * this method is to create insurance
+     *
+     * @param insurance
+     */
     @Override
     public void create(Insurance insurance) {
         insurancerepository.create(insurance);
-         }
+    }
 
+    /**
+     * this method is to get insurance list.
+     *
+     * @return
+     */
     @Override
     public List<Insurance> getInsurance() {
         return insurancerepository.getList();
     }
+
+    /**
+     * this method is to find insurance by id.
+     *
+     * @param inId
+     * @return
+     */
     @Override
     public Insurance find(int inId) {
         return insurancerepository.find(inId);
     }
+
+    /**
+     * this method is to remove insurance.
+     *
+     * @param inId
+     */
     @Override
     public void delete(int inId) {
         insurancerepository.delete(inId);
