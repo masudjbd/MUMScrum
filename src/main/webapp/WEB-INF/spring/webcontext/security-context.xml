@@ -39,10 +39,10 @@
     
     <beans:bean id="dataSourceSecurity" class="org.apache.commons.dbcp.BasicDataSource"
                 destroy-method="close">
-        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <beans:property name="url" value="jdbc:mysql://localhost:3306/mumscrum?zeroDateTimeBehavior=convertToNull" />
-        <beans:property name="username" value="root" />
-        <beans:property name="password" value="" />
+         <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://ec2-107-21-125-143.compute-1.amazonaws.com:5432/d74qlnvs07gbus?zeroDateTimeBehavior=convertToNull" />
+        <property name="username" value="fqcbmyftrxafsd" />
+        <property name="password" value="Ov3BskYGgkRsCpDXtp5V1C3pCN" />
     </beans:bean>
     <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
 
@@ -50,7 +50,26 @@
         <!--<beans:constructor-arg name="strength" value="10" />-->
     </beans:bean>
         
-    
+    <!-- 
+    	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+          destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://ec2-107-21-125-143.compute-1.amazonaws.com:5432/d74qlnvs07gbus?zeroDateTimeBehavior=convertToNull" />
+        <property name="username" value="fqcbmyftrxafsd" />
+        <property name="password" value="Ov3BskYGgkRsCpDXtp5V1C3pCN" />
+    </bean>
+
+    <!-- Hibernate 4 SessionFactory Bean definition -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="packagesToScan" value="edu.mum.mscrum.domain" />
+        <property name="hibernateProperties">
+            <props>
+                <prop key="javax.persistence.validation.factory">validator</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+    -->
     
     <authentication-manager>
         <authentication-provider>
